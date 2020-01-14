@@ -1,0 +1,40 @@
+.button {
+    background-color: rgba(25, 228, 201);
+    text-decoration-line: none;
+    color: rgb(48, 26, 1);
+    padding: 10px;
+    text-align: center;
+    border: 0px;
+    border-radius: 5px;
+    border-width: inherit;
+    margin: 5px 0;
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 255, .5);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    outline: none;
+}
+div {
+    margin: 5px 0;
+}
+
+div:hover {
+    font-weight: bold;
+}
+
+#first {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(100, 20, 30);
+}
+
+#second {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: rgb(200, 255, 40);
+}
+
+#third {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(200, 40, 200);
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Activity 2</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="team_activity_02.js"></script>
+</head>
+
+<body>
+    <div id="first">Div 1</div>
+    <input id="newColor" type="text">
+    <button id="button2" name="changeButton">Change Color</button>
+
+    <div id="second">Hello, world.</div>
+    <div id="third">Wait, what?</div>
+
+    <button id="button" class="button">Click me!</button>
+    <span id="clickedMessage"></span>
+    <script>
+        document.getElementById('button').addEventListener('click', userClick);
+        document.getElementById('button2').addEventListener('click', changeColor);
+    </script>
+</body>
+</html>
