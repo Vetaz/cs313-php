@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+https://prod.liveshare.vsengsaas.visualstudio.com/join?C792705A1F1D99FC058F43E4812499BEAC25<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +7,7 @@
     <title>Team Activity 2</title>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="team_activity_02.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -16,6 +17,12 @@
 
     <div id="second">Hello, world.</div>
     <div id="third">Wait, what?</div>
+    <button id="button3" class="button">Fade in/out.</button>
+    <script>
+        $("#button3").click(function(){
+            $("#third").fadeToggle("slow");
+        })
+    </script>    
 
     <button id="button" class="button">Click me!</button>
     <span id="clickedMessage"></span>
