@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Team Activity 2</title>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
     <script src="team_activity_02.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
+  </head>
 
-<body>
-    <div id="first">Div 1</div>
-    <input id="newColor" type="text">
-    <button id="button2" name="changeButton">Change Color</button>
+  <body>
+    <div class="text-center" id="first">
+      This background color can be changed.
+      <br>
+      <input id="newColor" type="text" >
+      <button id="button2" name="changeButton">Change Color</button>
+    </div>
+    <div class="text-center" id="second">Hello, world.</div>
+    <div class="text-center" id="third">Hover over me.</div>
+    <div class="text-center">
+      <button id="button3" class="button">Fade in/out.</button>
+      <button id="button" class="button">Click me!</button>
+    </div>
 
-    <div id="second">Hello, world.</div>
-    <div id="third">Wait, what?</div>
-    <button id="button3" class="button">Fade in/out.</button>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
     <script>
-        $("#button3").click(function(){
+        document.getElementById("button").addEventListener("click", userClick);
+        //document.getElementById("button2").addEventListener("click", changeColor);
+  
+        //jQuery
+        $(document).ready(function() {
+          $("#button3").click(function() {
             $("#third").fadeToggle("slow");
-        })
-    </script>    
-
-    <button id="button" class="button">Click me!</button>
-    <span id="clickedMessage"></span>
-    <script>
-        document.getElementById('button').addEventListener('click', userClick);
-        document.getElementById('button2').addEventListener('click', changeColor);
-    </script>
-</body>
+          });
+          $("#button2").click(function() {
+            var newColor = $("#newColor").val();
+            $("#first").css("background-color", newColor);
+          });
+        });
+      </script>
+  </body>
 </html>

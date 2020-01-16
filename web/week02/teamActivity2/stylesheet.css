@@ -26,15 +26,18 @@ div:hover {
 
 #first {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(100, 20, 30);
+    background-color: brown;
+    font-size: 20px;
 }
 
 #second {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background-color: rgb(200, 255, 40);
+    font-size: 40px;
 }
 
 #third {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     background-color: rgb(200, 40, 200);
+    font-size: 30px;
 }
