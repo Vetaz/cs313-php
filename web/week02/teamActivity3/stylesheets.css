@@ -1,0 +1,17 @@
+div.container {
+    display: flex;
+    font-family: 'Special Elite', cursive; 
+    margin:auto;
+}
+
+div.contain {
+    grid-gap: 5px;
+    padding: 0px;
+    max-width: 50%;
+    margin: 0 80%;
+}
+
+div {
+    border: 1px solid black;
+    
+}
