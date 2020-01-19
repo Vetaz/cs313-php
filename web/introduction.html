@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assignments.css">
+    <link id="dark" rel="" href="dark.css">
+    <link rel="stylesheet" href="toggle-button.css">
+    
+    <title>Jordi's Introduction</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="text-center">Introduction</h1>
+      <p class="container">
+        My name is <b>Jordi Kloosterboer</b>. This is my fifth semester at
+        BYU-I. I am majoring in <i>Computer Engineering</i> and my current
+        permanent address is in West Valley City, UT. However, I was born in the
+        Netherlands and have spent considerable time there, in England, and in
+        Colorado. The pictures below show my siblings where I am the youngest.
+        The picture where we are younger of was taken circa 2000, and the
+        picture where we are older was taken in 2017. These days I like to
+        research my Dutch ancestry, play League of Legends, read fantasy books,
+        and watch movies on the big streaming platforms.
+      </p>
+      <img
+        class="container"
+        src="./youngchildren.jpg"
+        alt="A Picture of us children when we were younger"
+        style="width:600px;height:355px;"
+      />
+      <br />
+      <img
+        class="container"
+        src="./oldchildren.jpg"
+        alt="A picture of us children in our 20s"
+        style="width:600px;height:363px;"
+      />
+    </main>
+    <footer>
+      <a class="button" href="index.php">Home Page</a>
+      <a class="button" href="https://na.leagueoflegends.com/en/"
+        >League of Legends</a
+      >
+      <a class="button" href="https://en.wikipedia.org/wiki/H.I.V.E._(series)"
+        >H.I.V.E.</a
+      >
+      <a class="button" href="https://www.netflix.com/">Netflix</a>
+      <a class="button" href="https://www.familysearch.org/en/">FamilySearch</a>
+      <div class="toggle-btn-container">
+        <div class="toggle-btn" onclick="toggleDarkMode();this.classList.toggle('active')">
+          <div class="inner-circle"></div>
+        </div>
+      </div>
+    </footer>
+    <script src="toggle-button.js"></script>
+  </body>
+</html>

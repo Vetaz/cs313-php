@@ -1,0 +1,35 @@
+/*https://www.youtube.com/watch?v=ZZoA3MjgASQ helped me create this*/
+
+.toggle-btn-container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-btn {
+  background-color: grey;
+  width: 50px;
+  height: 25px;
+  border-radius: 15px;
+  padding: 2px;
+  transition: all 500ms ease-in-out;
+}
+
+.toggle-btn > .inner-circle {
+  width: 21px;
+  height: 21px;
+  background-color: white;
+  border-radius: 50%;
+  transform: translate(0,0);
+  transition: all 500ms ease-in-out;
+}
+
+.toggle-btn.active {
+  background-color: rgb(46,137,255);
+  transition: all 500ms ease-in-out;
+}
+
+.toggle-btn.active > .inner-circle {
+  transform: translate(25px,0);
+  transition: all 500ms ease-in-out;
+}
