@@ -22,7 +22,7 @@
   if (isset($_POST['scripture_book'])) {
     $book_name = $_POST['scripture_book'];
 
-    $scriptures = $db->prepare("SELECT * FROM Scriptures WHERE book = $book_name");
+    $scriptures = $db->prepare("SELECT * FROM Scriptures WHERE book = '$book_name'");
     $scriptures->execute();
 
     while ($row = $scriptures->fetch(PDO::FETCH_ASSOC)) {
@@ -30,7 +30,7 @@
       $chapter = $row['chapter'];
       $verse = $row['verse'];
       $content = $row['content'];
-      
+
       echo "<p><b>$book $chapter:$verse</b> - \"$content\"</p>";
     }
   }
