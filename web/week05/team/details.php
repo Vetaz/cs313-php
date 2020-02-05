@@ -26,6 +26,8 @@ session_start()
       $vers = $_SESSION['verse'][$id];
       $cont = $_SESSION['content'][$id];
       echo "<p> $chap:$vers - $cont</p>";
+    } else {
+      echo "<p>No scripture id given!</p>";
     }
   ?>
 </body>
