@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,11 +31,18 @@
 
     while ($row = $scriptures->fetch(PDO::FETCH_ASSOC)) {
       $book = $row['book'];
+      $_SESSION['book'] = $book;
+      
       $chapter = $row['chapter'];
-      $verse = $row['verse'];
-      $content = $row['content'];
+      $_SESSION['chapter'] = $chapter;
 
-      echo "<p><b>$book $chapter:$verse</b> - \"$content\"</p>";
+      $verse = $row['verse'];
+      $_SESSION['verse'] = $verse;
+
+      $content = $row['content'];
+      $_SESSION['content'] = $content;
+
+      echo "<p><a href=\"details.php?book=$book&chapter=$chapter&verse=$verse\">$book $chapter:$verse</a></p>";
     }
   }
 
