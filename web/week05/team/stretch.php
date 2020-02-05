@@ -28,21 +28,25 @@ session_start();
 
     $scriptures = $db->prepare("SELECT * FROM Scriptures WHERE book = '$book_name'");
     $scriptures->execute();
+    unset($_SESSION['book']);
+    unset($_SESSION['chapter']);
+    unset($_SESSION['verse']);
+    unset($_SESSION['content']);
 
     while ($row = $scriptures->fetch(PDO::FETCH_ASSOC)) {
       $book = $row['book'];
-      $_SESSION['book'] = $book;
+      $_SESSION['book'][] = $book;
       
       $chapter = $row['chapter'];
-      $_SESSION['chapter'] = $chapter;
+      $_SESSION['chapter'][] = $chapter;
 
       $verse = $row['verse'];
-      $_SESSION['verse'] = $verse;
+      $_SESSION['verse'][] = $verse;
 
       $content = $row['content'];
-      $_SESSION['content'] = $content;
+      $_SESSION['content'][] = $content;
 
-      echo "<p><a href=\"details.php?book=$book&chapter=$chapter&verse=$verse\">$book $chapter:$verse</a></p>";
+      echo "<p><a href=\"details.php\">$book $chapter:$verse</a></p>";
     }
   }
 
