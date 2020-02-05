@@ -28,7 +28,7 @@ session_start()
         $cont = $_SESSION['content'][$id];
         echo "<p> $chap:$vers - $cont</p>";
       } catch (Exception $e) {
-        // do nothing.
+        echo "The scripture with id $id is not available!";
       }
     }
   ?>
