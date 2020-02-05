@@ -22,14 +22,10 @@ session_start()
   <?php
     if (isset($_GET['$scripture_id'])) {
       $id = $_GET['$scripture_id'];
-      try {
-        $chap = $_SESSION['chapter'][$id];
-        $vers = $_SESSION['verse'][$id];
-        $cont = $_SESSION['content'][$id];
-        echo "<p> $chap:$vers - $cont</p>";
-      } catch (Exception $e) {
-        echo "The scripture with id $id is not available!";
-      }
+      $chap = $_SESSION['chapter'][$id];
+      $vers = $_SESSION['verse'][$id];
+      $cont = $_SESSION['content'][$id];
+      echo "<p> $chap:$vers - $cont</p>";
     }
   ?>
 </body>
