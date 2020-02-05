@@ -32,7 +32,7 @@ session_start();
     unset($_SESSION['chapter']);
     unset($_SESSION['verse']);
     unset($_SESSION['content']);
-
+    $id = 0;
     while ($row = $scriptures->fetch(PDO::FETCH_ASSOC)) {
       $book = $row['book'];
       $_SESSION['book'][] = $book;
@@ -46,7 +46,8 @@ session_start();
       $content = $row['content'];
       $_SESSION['content'][] = $content;
 
-      echo "<p><a href=\"details.php\">$book $chapter:$verse</a></p>";
+      echo "<p><a href=\"details.php?scripture_id=$id\">$book $chapter:$verse</a></p>";
+      $id++;
     }
   }
 

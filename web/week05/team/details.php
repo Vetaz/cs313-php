@@ -20,12 +20,17 @@ session_start()
   </h1>
 
   <?php
-  for ($x = 0; $x < sizeof($book); $x++) {
-    $chap = $_SESSION['chapter'][$x];
-    $vers = $_SESSION['verse'][$x];
-    $cont = $_SESSION['content'][$x];
-    echo "<p> $chap:$vers - $cont</p>";
-  }
+    if (isset($_GET['$scripture_id'])) {
+      $id = $_GET['$scripture_id'];
+      try {
+        $chap = $_SESSION['chapter'][$id];
+        $vers = $_SESSION['verse'][$id];
+        $cont = $_SESSION['content'][$id];
+        echo "<p> $chap:$vers - $cont</p>";
+      } catch (Exception $e) {
+        // do nothing.
+      }
+    }
   ?>
 </body>
 </html>
