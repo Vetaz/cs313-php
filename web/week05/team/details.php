@@ -20,14 +20,18 @@ session_start()
   </h1>
 
   <?php
-    if (isset($_GET['$scripture_id'])) {
-      $id = $_GET['$scripture_id'];
-      $chap = $_SESSION['chapter'][$id];
-      $vers = $_SESSION['verse'][$id];
-      $cont = $_SESSION['content'][$id];
-      echo "<p> $chap:$vers - $cont</p>";
+    if (isset($_GET['scripture_id'])) {
+      try {
+        $id = $_GET['scripture_id'];
+        $chap = $_SESSION['chapter'][$id];
+        $vers = $_SESSION['verse'][$id];
+        $cont = $_SESSION['content'][$id];
+        echo "<p> $chap:$vers - $cont</p>";
+      } catch (Exception $e) {
+        echo "<p> Scripture ID is invalid!</p>";
+      }
     } else {
-      echo "<p>No scripture id given!</p>";
+      echo "<p>No Scripture ID given!</p>";
     }
   ?>
 </body>
