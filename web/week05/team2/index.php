@@ -12,7 +12,7 @@
 
   $db = get_db();
 
-  $eventss = $db->prepare("SELECT name as Name, image as Image FROM w5_event");
+  $events = $db->prepare("SELECT name as Name, image as Image FROM w5_event");
   $events->execute();
 
   while ($row = $events->fetch(PDO::FETCH_ASSOC)) {
