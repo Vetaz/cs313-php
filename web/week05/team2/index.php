@@ -16,8 +16,8 @@
   $events->execute();
 
   while ($row = $events->fetch(PDO::FETCH_ASSOC)) {
-    $name = $row['Name'];
-    $imageURL = $row['Image'];
+    $name = $row['name'];
+    $imageURL = $row['image'];
 
     echo "<p>$name</p>";?>
     <img src="<?=$imageURL?>" style="width:100px; height:auto";
