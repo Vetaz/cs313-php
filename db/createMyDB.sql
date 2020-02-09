@@ -37,5 +37,5 @@ CREATE TABLE person_parent (
 
 CREATE TABLE person_child (
   person_id VARCHAR(100) NOT NULL REFERENCES person(id),
-  parent_id VARCHAR(100) NOT NULL REFERENCES person(id)
+  child_id VARCHAR(100) NOT NULL REFERENCES person(id)
 );
