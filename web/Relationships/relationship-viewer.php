@@ -1,3 +1,42 @@
+<?php
+function findRelationship($id1, $id2)
+{
+  require "dbConnect.php";
+  $db = get_db();
+  # Results is the result of the path to get from one id to another.
+  $results = null;
+  if (($id1 == 'g1i1') && ($id2 == 'g1i3')) {
+    $results = array(
+      'g1i1' => 'Self',
+      'g1i2' => 'Spouse',
+      'g1i3' => 'Parent'
+    );
+  }
+  $relationship = [];
+  foreach ($results as $id => $rel) {
+    $person = $db->prepare("SELECT name, id, birthdate, deathdate FROM person WHERE id = '$id'");
+    $person->execute();
+
+    # Only one row for each person.
+    while ($row = $person->fetch(PDO::FETCH_ASSOC)) {
+      $name = $row['name'];
+      $id = $row['id'];
+      $birthdate = $row['birthdate'];
+      $deathdate = $row['deathdate'];
+    }
+
+    $relationship[] = array(
+      'name' => $name,
+      'id' => $id,
+      'birthdate' => $birthdate,
+      'deathdate' => $deathdate,
+      'rel' => $rel
+    );
+  }
+  return $relationship;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,39 +67,7 @@
       $relationship = findRelationship($id1, $id2);
 
 
-      function findRelationship($id1, $id2)
-      {
-        require "dbConnect.php";
-        $db = get_db();
-        # Results is the result of the path to get from one id to another.
-        $results = array(
-          'g1i1' => 'Self',
-          'g1i2' => 'Spouse',
-          'g1i3' => 'Parent'
-        );
-        $relationship = [];
-        foreach ($results as $id => $rel) {
-          $person = $db->prepare("SELECT name, id, birthdate, deathdate FROM person WHERE id = '$id'");
-          $person->execute();
-
-          # Only one row for each person.
-          while ($row = $person->fetch(PDO::FETCH_ASSOC)) {
-            $name = $row['name'];
-            $id = $row['id'];
-            $birthdate = $row['birthdate'];
-            $deathdate = $row['deathdate'];
-          }
-
-          $relationship[] = array(
-            'name' => $name,
-            'id' => $id,
-            'birthdate' => $birthdate,
-            'deathdate' => $deathdate,
-            'rel' => $rel
-          );
-        }
-        return $relationship;
-      }
+      
 
       if (sizeof($relationship) > 1) {
         echo "<div class='relationshipCC'>";
