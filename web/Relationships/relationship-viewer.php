@@ -65,12 +65,13 @@
 
     if (sizeof($relationship) > 1) {
       echo "<div class='relationshipCC'>";
-      foreach ($relationship as $rel => $prop) {
+      foreach ($relationship as $prop) {
         echo "<div class='person'>";
         $name = $prop['name'];
         $id = $prop['id'];
         $birthdate = $prop['birthdate'];
         $deathdate = $prop['deathdate'];
+        $rel = $prop['rel'];
         $idNumber = substr($id, strpos($id, "i") + 1);
         echo "<p class='relationship'>$name</p>";
         echo "<p class='relationship'>$birthdate - $deathdate | $idNumber</p>";
