@@ -73,7 +73,7 @@
         $deathdate = $prop['deathdate'];
         $idNumber = substr($id, strpos($id, "i") + 1);
         echo "<p class='relationship'>$name</p>";
-        echo "<p class='relationship'>$birthdate - $deathdate | $id</p>";
+        echo "<p class='relationship'>$birthdate - $deathdate | $idNumber</p>";
         echo "<p class='relationship'>$rel</p>";
         echo "</div>";
         if ($id2 != $id) {
