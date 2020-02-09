@@ -1,9 +1,12 @@
 <?php
+
+
 function findRelationship($id1, $id2)
 {
   require "dbConnect.php";
   $db = get_db();
   # Results is the result of the path to get from one id to another.
+  # the value is the relationship from the previous id.
   $results = null;
   if (($id1 == 'g1i1') && ($id2 == 'g1i3')) {
     $results = array(
@@ -65,9 +68,6 @@ function findRelationship($id1, $id2)
       $id1 = $_GET['id1'];
       $id2 = $_GET['id2'];
       $relationship = findRelationship($id1, $id2);
-
-
-      
 
       if (sizeof($relationship) > 1) {
         echo "<div class='relationshipCC'>";
