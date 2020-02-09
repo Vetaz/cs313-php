@@ -9,27 +9,32 @@
 
 <body>
   <header>
-
+    <h1>Relationship Viewer</h1>
+    <nav>
+      <a href="get-relationship.php" class="button">Get Relationships</a>
+      <a href="index.html" class="button">Home</a>
+    </nav>
   </header>
   <main>
 
     <?php
-    require '../dbConnect.php';
+    require "dbConnect.php";
     $db = get_db();
-
+    echo "Checking to see if this prints to the screen.";
     $id1 = null;
     $id2 = null;
     $relationship = null;
     if (isset($_GET['id1']) && isset($_GET['id2'])) {
       $relationship = findRelationship($_GET['id1'], $_GET['id2']);
+      echo "id1 and id2 are set.";
     } else {
       echo "IDs are not setup correctly. Go back and check them!";
     }
     var_dump($relationship);
     var_dump(sizeof($relationship));
 
-    function findRelationship($id1, $id2)
-    {
+    function findRelationship($id1, $id2) {
+      echo "inside findRelationship function";
       # Results is the result of the path to get from one id to another.
       $results = array(
         'g1i1' => 'Self',
@@ -56,6 +61,9 @@
           'rel' => $rel
         );
       }
+      
+      var_dump($relationship);
+      echo "end of findRelationship.";
       return $relationship;
     }
 
