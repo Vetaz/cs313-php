@@ -42,9 +42,9 @@
       );
       $relationship = [];
       foreach ($results as $id => $rel) {
-        echo "inside foreach loop";
         $person = $db->prepare("SELECT name, id, birthdate, deathdate FROM person WHERE id = '$id'");
-        var_dump($person);
+        $person->execute();
+        
         # Only one row for each person.
         while ($row = $person->fetch(PDO::FETCH_ASSOC)) {
           echo "inside while loop";
