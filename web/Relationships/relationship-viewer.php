@@ -20,7 +20,6 @@
     <?php
     require "dbConnect.php";
     $db = get_db();
-    echo "Checking to see if this prints to the screen.";
     $id1 = null;
     $id2 = null;
     $relationship = null;
@@ -34,7 +33,7 @@
     var_dump(sizeof($relationship));
 
     function findRelationship($id1, $id2) {
-      echo "inside findRelationship function";
+      
       # Results is the result of the path to get from one id to another.
       $results = array(
         'g1i1' => 'Self',
@@ -43,10 +42,13 @@
       );
       $relationship = [];
       foreach ($results as $id => $rel) {
+        echo "inside foreach loop";
         $person = $db->prepare("SELECT name, id, birthdate, deathdate FROM person WHERE id = '$id'");
-
+        var_dump($person);
         # Only one row for each person.
         while ($row = $person->fetch(PDO::FETCH_ASSOC)) {
+          echo "inside while loop";
+          var_dump($row);
           $name = $row['name'];
           $id = $row['id'];
           $birthdate = $row['birthdate'];
