@@ -23,13 +23,12 @@
     $id2 = null;
     $relationship = null;
     if (isset($_GET['id1']) && isset($_GET['id2'])) {
-      $relationship = findRelationship($_GET['id1'], $_GET['id2']);
-      echo "id1 and id2 are set.";
+      $id1 = $_GET['id1'];
+      $id2 = $_GET['id2'];
+      $relationship = findRelationship($id1, $id2);
     } else {
       echo "IDs are not setup correctly. Go back and check them!";
     }
-    var_dump($relationship);
-    var_dump(sizeof($relationship));
 
     function findRelationship($id1, $id2) {
       require "dbConnect.php";
@@ -47,8 +46,6 @@
         
         # Only one row for each person.
         while ($row = $person->fetch(PDO::FETCH_ASSOC)) {
-          echo "inside while loop";
-          var_dump($row);
           $name = $row['name'];
           $id = $row['id'];
           $birthdate = $row['birthdate'];
@@ -63,9 +60,6 @@
           'rel' => $rel
         );
       }
-      
-      var_dump($relationship);
-      echo "end of findRelationship.";
       return $relationship;
     }
 
@@ -77,11 +71,12 @@
         $id = $prop['id'];
         $birthdate = $prop['birthdate'];
         $deathdate = $prop['deathdate'];
+        $idNumber = substr($id, strpos($id, "i") + 1);
         echo "<p class='relationship'>$name</p>";
-        echo "<p class='relationship'>$birthdate-$deathdate | $id</p>";
+        echo "<p class='relationship'>$birthdate - $deathdate | $id</p>";
         echo "<p class='relationship'>$rel</p>";
         echo "</div>";
-        if ($otherId != $id) {
+        if ($id2 != $id) {
           echo "<div class='line'></div>";
         }
       }
