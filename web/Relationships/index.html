@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Relationship Viewer - Sign In</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
+  <link rel="stylesheet" href="relationship.css">
 </head>
+
 <body>
-  
+  <header>
+    <h1>Home Page</h1>
+    <nav>
+      <a href="get-relationship.php" class="button">Get Relationships</a>
+      <a href="index.html" class="button">Home</a>
+    </nav>
+  </header>
+  <form method="get" action="relationship-viewer.php">
+    <p>Username:</p>
+    <input type="text" name="username">
+    <p>Password:</p>
+    <input type="text" name="password">
+    <br>
+    <input class="button" type="submit" value="Log In">
+    <a href="register.php" class="button">Register</a>
+  </form>
 </body>
 </html>
