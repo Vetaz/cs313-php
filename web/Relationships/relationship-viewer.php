@@ -18,8 +18,7 @@
   <main>
 
     <?php
-    require "dbConnect.php";
-    $db = get_db();
+    
     $id1 = null;
     $id2 = null;
     $relationship = null;
@@ -33,7 +32,8 @@
     var_dump(sizeof($relationship));
 
     function findRelationship($id1, $id2) {
-      
+      require "dbConnect.php";
+      $db = get_db();
       # Results is the result of the path to get from one id to another.
       $results = array(
         'g1i1' => 'Self',
