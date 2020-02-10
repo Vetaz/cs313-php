@@ -105,10 +105,27 @@ ORDER BY "Number of Participants"
 LIMIT 1;
 
 \echo '6d. List all competitors that competed in the same event at least once '
+SELECT "Name", "Event Name", "Number of Same"
+FROM
+(SELECT p.name AS "Name", e.name AS "Event Name", COUNT(e.id) as "Number of Same"
+FROM w5_participant AS p
+INNER JOIN w5_event_participant AS ep ON p.id = ep.participant_id
+INNER JOIN w5_event AS e ON ep.event_id = e.id
+GROUP BY p.name, e.name) AS "Event Counts"
+WHERE "Number of Same" > 1;
 
-\echo 'e.	How many people competed in swim competitions?'
+\echo '6e.	How many people competed in swim competitions?'
 SELECT COUNT(p.id)
 FROM w5_participant AS p
 INNER JOIN w5_event_participant AS ep ON p.id = ep.participant_id
-INNER JOIN 
-\echo 'f.	What type of competition has the most overall competitors?'
+INNER JOIN w5_event AS e ON e.id = ep.event_id
+INNER JOIN w5_event_type AS et ON et.id = e.TYPE
+WHERE et.name = 'Swim Competition';
+
+\echo '6f.	What type of competition has the most overall competitors?'
+SELECT et.name AS "Name", COUNT(e.id) AS "Number of Events"
+FROM w5_participant AS p
+INNER JOIN w5_event_participant AS ep ON p.id = ep.participant_id
+INNER JOIN w5_event AS e ON e.id = ep.event_id
+INNER JOIN w5_event_type AS et ON et.id = e.TYPE
+GROUP BY et.name;
