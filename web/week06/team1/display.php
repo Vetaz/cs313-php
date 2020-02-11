@@ -18,7 +18,6 @@
 
                $statement2 = $db->prepare("SELECT food FROM w6_food WHERE ID = $food_id");
                $statement2->execute();
-               $food = null;
                while ($fRow = $statement2->fetch(PDO::FETCH_ASSOC)) {
                   $food = $fRow['food'];
                }
