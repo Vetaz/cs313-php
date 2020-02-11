@@ -6,7 +6,7 @@
 		<div class="container">
          <?php
             $personId = $_GET['personId'];
-            $statement = $db->prepare('SELECT * FROM w6_user WHERE ID = :personID');
+            $statement = $db->prepare('SELECT * FROM w6_user WHERE ID = :personId');
             $statement->bindValue(':personId', $personId);
             $statement->execute();
 
