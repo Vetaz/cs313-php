@@ -14,10 +14,15 @@
     $desiredUsernameDB = $db->prepare($query);
     $desiredUsernameDB->bindValue(':desiredUsername', $desiredUsername);
     $desiredUsernameDB->execute();
+    while ($row = $desiredUsernameDB->fetch(PDO::FETCH_ASSOC)) {
+      $usernameInSystem = $row['username'];
+    }
     var_dump($desiredUsernameDB);
     echo "<br> desired username: <bR>";
     var_dump($desiredUsername);
-    if (empty($desiredUsernameDB)) {
+    echo "<br> username in system: <bR>";
+    var_dump($usernameInSystem);
+    if (empty($usernameInSystem)) {
       echo "That username is not in the system :)";
     } else {
       echo "That username is already in the system!!";
