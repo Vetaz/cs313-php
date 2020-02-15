@@ -13,6 +13,10 @@
     $query = "SELECT username FROM usr WHERE username = :desiredUsername";
     $desiredUsernameDB = $db->prepare($query);
     $desiredUsernameDB->bindValue(':desiredUsername', $desiredUsername);
+    $desiredUsernameDB->execute();
+    var_dump($desiredUsernameDB);
+    echo "<br> desired username: <bR>";
+    var_dump($desiredUsername);
     if (empty($desiredUsernameDB)) {
       echo "That username is not in the system :)";
     } else {
