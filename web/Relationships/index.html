@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="relationship.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign In</title>
-  <link rel="stylesheet" href="relationship.css">
-</head>
-
-<body>
-  <header>
-    <h1>Home Page</h1>
-    <nav>
-      <a href="get-relationship.php" class="button">Get Relationships</a>
-      <a href="index.html" class="button">Home</a>
-    </nav>
-  </header>
-  <form method="post">
-    <p>Username:</p>
-    <input type="text" name="username">
-    <p>Password:</p>
-    <input type="text" name="password">
-    <br>
-    <input class="button" type="submit" value="Log In">
-    <a href="register.php" class="button">Register</a>
-  </form>
-</body>
+  <body>
+    <header>
+      <h1>Home Page</h1>
+      <nav>
+        <a href="get-relationship.php" class="button">Get Relationships</a>
+        <a href="index.html" class="button">Home</a>
+      </nav>
+    </header>
+    <form method="POST">
+      <div class="space-after">
+        <label for="username">Username</label>
+        <div>
+          <input type="text" id="username" name="username" maxlength="64" />
+        </div>
+        <label for="password">Password</label>
+        <div>
+          <input type="text" id="password" name="password" maxlength="64" />
+        </div>
+      </div>
+      <input class="button" type="submit" value="Log In" />
+      <p>
+        Haven't created an account yet?
+        <a id="register" href="register.html">Register here.</a>
+      </p>
+    </form>
+  </body>
 </html>

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(209, 176, 139);
@@ -30,6 +34,10 @@ div.line {
   height: 50px;
 }
 
+div.space-after {
+  margin-bottom: 8px;
+}
+
 a.button {
   background-color: rgba(255, 255, 255, 0.5);
   text-decoration-line: none;
@@ -39,14 +47,14 @@ a.button {
   border: solid 2px;
   text-align: center;
   border-radius: 10px;
-  font-size: 1.2em;  
+  font-size: 1.2em;
   line-height: 2;
   color: inherit;
 }
 
 nav {
   margin: 10px 0;
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -63,6 +71,7 @@ input {
   font-size: large;
   line-height: 1.5em;
   padding: 4px;
+  width: 100%;
 }
 
 .button:hover {

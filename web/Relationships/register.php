@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <title>Relationship Viewer</title>
-  <link rel="stylesheet" href="relationship.css">
+  <title>Registering</title>
 </head>
-
 <body>
-  <header>
-    <h1>Relationship Viewer</h1>
-    <nav>
-      <a href="get-relationship.php" class="button">Get Relationships</a>
-      <a href="index.html" class="button">Home</a>
-    </nav>
-  </header>
-</body>
+  <?php
+  if (isset($_POST['username'])) {
+    $desiredUsername = htmlspecialchars($_POST['username']);
+    require "dbConnect.php";
+    $db = get_db();
+    $query = "SELECT username FROM usr WHERE username = :desiredUsername";
+    $desiredUsernameDB = $db->prepare($query);
+    $desiredUsernameDB->bindValue(':desiredUsername', $desiredUsername);
+    if (empty($desiredUsernameDB)) {
+      echo "That username is not in the system :)";
+    } else {
+      echo "That username is already in the system!!";
+    }
 
+
+  }
+
+  ?>
+</body>
 </html>

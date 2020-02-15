@@ -11,16 +11,18 @@ CREATE TABLE person (
   deathplace VARCHAR(100)
 );
 
+CREATE TABLE usr (
+  username VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+  firstName VARCHAR(32) NOT NULL,
+  lastName VARCHAR(64) NOT NULL,
+  pass VARCHAR(100)
+);
+
 CREATE TABLE gedcom (
   id SERIAL NOT NULL PRIMARY KEY,
   -- gedcom only references the starting person rather than all the people 
-  startingPerson_id VARCHAR(100) NOT NULL REFERENCES person(id)
-);
-
-CREATE TABLE usr (
-  username VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
-  pass VARCHAR(100),
-  gedcom_id INT REFERENCES gedcom(id)
+  startingPerson_id VARCHAR(100) NOT NULL REFERENCES person(id),
+  username VARCHAR(100) NOT NULL REFERENCES usr(username)
 );
 
 -- many to many, person to person relationships.
