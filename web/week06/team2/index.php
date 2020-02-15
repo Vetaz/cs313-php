@@ -21,7 +21,7 @@ $db = get_db();
           <input type="textarea" class="form-control" placeholder="Content" name="content">
         </div>
         <div class="col">
-          <?php/*
+          <?php
           $statement = $db->prepare("SELECT * FROM Topics");
           $statement->execute();
           while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -29,7 +29,7 @@ $db = get_db();
             $name = $row['name'];
 
             echo "<input type='checkbox' id='$id' name='topics[]' value='$id'>$name";
-          }*/
+          }
           ?>
         </div>
         <div class="col">

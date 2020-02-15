@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS Scriptures;
+DROP TABLE IF EXISTS Scriptures CASCADE;
+DROP TABLE IF EXISTS Topics CASCADE;
+DROP TABLE IF EXISTS Scriptures_Topics CASCADE;
 
 CREATE TABLE Scriptures (
   id SERIAL NOT NULL PRIMARY KEY,
@@ -14,7 +16,7 @@ CREATE TABLE Topics (
 );
 
 CREATE TABLE Scriptures_Topics (
-  Scripture_id INT NOT NULL REFERENCES Scripture(id),
+  Scripture_id INT NOT NULL REFERENCES Scriptures(id),
   Topics_id INT NOT NULL REFERENCES Topics(id)
 );
 
