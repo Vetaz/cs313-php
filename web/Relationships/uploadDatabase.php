@@ -50,8 +50,14 @@ foreach ($gedcom->getIndi() as $indi) {
       }
     }
   }
-  echo $id . " " . $sex . " " . $givenNames . " " . $surname . " " . $fullname . 
-  " " . $birthDate . " " . $$birthPlace . " " . $deathDate . " " . $deathPlace . "<br>";
+  if (empty($fullname)) {
+    $name = $givenNames . " " . $surname; 
+  } else {
+    $name = $fullname;
+  }
+  echo $id . " " . $sex . " " . $name . 
+  " " . $birthDate . " " . $birthPlace . " " . $deathDate . " " . $deathPlace . "<br>";
+  $query = "INSERT INTO person (id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$id', ";
   foreach ($indi->famc as $family) {
     $parentId[] = $gedcom->getFam()[$family->famc]->wife;
     $parentId[] = $gedcom->getFam()[$family->famc]->husb;
