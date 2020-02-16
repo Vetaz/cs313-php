@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'lib/Gedcom/bootstrap.php';
+require "dbConnect.php";
 
 $file = $_SESSION['filename'];
 
@@ -20,52 +21,50 @@ if (!empty($errors))
 
 
 foreach ($gedcom->getIndi() as $indi) {
-  echo "<br>ID: " . $indi->id;
-  echo "<br>Sex: " . $indi->sex;
+  $id = $indi->id;
+  $sex = $indi->sex;
   if ($indi->name[0]->givn) {
-    echo "<br>Given Names: " . $indi->name[0]->givn;
+  $givenNames = $indi->name[0]->givn;
   }
   if ($indi->name[0]->surn) {
-    echo "<br>Surname: " . $indi->name[0]->surn;
+  $surname =  $indi->name[0]->surn;
   }
   if (($indi->name[0]->givn == NULL) && ($indi->name[0]->surn == NULL)) {
-    echo "<br>Full Name: " . $indi->name[0]->name;
+  $fullname = $indi->name[0]->name;
   }
-  echo '<br><br>';
   foreach ($indi->even as $event) {
     if ($event->type == 'BIRT') {
       if ($event->date != NULL) {
-        echo "Birthdate: " . $event->date . "<br>";
+        $birthDate = $event->date;
       }
       if ($event->plac != NULL) {
-        echo "Birthplace " . $event->plac->plac . "<br>";
+        $birthPlace = $event->plac->plac;
       }
     }
     if ($event->type == 'DEAT') {
       if ($event->date != NULL) {
-        echo "Deathdate: " . $event->date . "<br>";
+        $deathDate = $event->date;
       }
       if ($event->plac != NULL) {
-        echo "Deathplace: " . $event->plac->plac . "<br>";
+        $deathPlace = $event->plac->plac;
       }
     }
   }
+  echo $id . " " . $sex . " " . $givenNames . " " . $surname . " " . $fullname . 
+  " " . $birthDate . " " . $$birthPlace . " " . $deathDate . " " . $deathPlace . "<br>";
   foreach ($indi->famc as $family) {
-    echo "Family Child ID: " . $family->famc . "<br>";
-    echo "Parent ID: " . $gedcom->getFam()[$family->famc]->wife . "<br>";
-    echo "Parent ID " . $gedcom->getFam()[$family->famc]->husb . "<br>";
+    $parentId[] = $gedcom->getFam()[$family->famc]->wife;
+    $parentId[] = $gedcom->getFam()[$family->famc]->husb;
   }
   foreach ($indi->fams as $family) {
-    echo "Family Spouse ID: " . $family->fams . "<br>";
     if ($indi->sex == 'M') {
-      echo "Spouse ID: " . $gedcom->getFam()[$family->fams]->wife . "<br>";
+      $spouse = $gedcom->getFam()[$family->fams]->wife;
     } else if ($indi->sex == 'F') {
-      echo "Spouse ID: " . $gedcom->getFam()[$family->fams]->husb . "<br>";
+      $spouse = $gedcom->getFam()[$family->fams]->husb;
     }
     foreach ($gedcom->getFam()[$family->fams]->chil as $child) {
-      echo "Child ID: " . $child . "<br>";
+      $child;
     }
   }
-  echo '<br><br>';
 }
 ?>
