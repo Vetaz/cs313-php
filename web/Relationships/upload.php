@@ -24,7 +24,7 @@ if (isset($_FILES["filename"])) {
   if (empty($errors) == false) {
     $errors[] = "Your file was not uploaded.<br>Page will redirect to the upload page.<br>";
     alert($errors[0]);
-    header("Location: index.html");
+    //header("Location: index.html");
   } else {
     if (move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file)) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
