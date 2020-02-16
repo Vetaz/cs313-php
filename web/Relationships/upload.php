@@ -32,13 +32,14 @@ if (isset($_FILES["filename"])) {
       header("Location: basic.php");
     } else {
       $errors[] = "Sorry, there was an error uploading your file.<br>Page will redirect to the upload page.";
-      alert($errors[0]);
-      header("Location: index.html");
+      foreach($errors as $error)
+      alert($error);
+      //header("Location: index.html");
     }
   }
 } else {
   echo "<p>Something went wrong. Redirecting to upload page.</p>";
   alert($errors);
-  header("Location: index.html");
+  //header("Location: index.html");
 }
 ?>
