@@ -34,6 +34,7 @@ if (isset($_FILES["filename"])) {
       $errors[] = "Sorry, there was an error uploading your file.<br>Page will redirect to the upload page.";
       foreach($errors as $error)
       alert($error);
+      var_dump($_FILES['filename']);
       //header("Location: index.html");
     }
   }
