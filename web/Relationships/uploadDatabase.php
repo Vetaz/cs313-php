@@ -58,8 +58,7 @@ foreach ($gedcom->getIndi() as $indi) {
   }
   echo $id . " " . $sex . " " . $name . 
   " " . $birthDate . " " . $birthPlace . " " . $deathDate . " " . $deathPlace . "<br>";
-  echo "INSERT INTO person (id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$id', '$sex', '$name', '$birthDate', '$birthPlace', '$deathDate','$deathPlace'";
-  $query = "INSERT INTO person (id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$id', '$sex', '$name', '$birthDate', '$birthPlace', '$deathDate','$deathPlace'";
+  $query = "INSERT INTO person (id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
   $insertPerson = $db->prepare($query);
   $insertPerson->execute();
   foreach ($indi->famc as $family) {
