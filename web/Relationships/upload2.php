@@ -8,7 +8,7 @@ function alert($msg)
 
 if (isset($_FILES["filename"])) {
   $errors = array();
-  $target_dir = "tempUploads/";
+  $target_dir = "/app/web/Relationships/tempUploads/";
   $target_file = $target_dir . "USERNAME" . basename(date('YmdHis') . ".ged");
   $fileType = strtolower(pathinfo($_FILES["filename"]["name"], PATHINFO_EXTENSION));
 
