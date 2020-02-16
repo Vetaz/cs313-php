@@ -37,8 +37,6 @@ if (isset($_FILES["filename"])) {
       foreach($errors as $error)
       alert($error);
       var_dump($_FILES['filename']);
-      $_SESSION['filename'] = $_FILES["filename"]["tmp_name"];
-      header("Location: basic.php");
       //header("Location: index.html");
     }
   }
