@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL);
+ini_set('display_errors',1);
 session_start();
 date_default_timezone_set('MST');
 function alert($msg) {
@@ -27,7 +28,7 @@ if (isset($_FILES["filename"])) {
     alert($errors[0]);
     //header("Location: index.html");
   } else {
-    if (move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["filename"]["tmp_name"] . ".tmp", $target_file)) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
       $_SESSION['filename'] = $target_file;
       header("Location: basic.php");
@@ -36,6 +37,8 @@ if (isset($_FILES["filename"])) {
       foreach($errors as $error)
       alert($error);
       var_dump($_FILES['filename']);
+      $_SESSION['filename'] = $_FILES["filename"]["tmp_name"];
+      header("Location: basic.php");
       //header("Location: index.html");
     }
   }
