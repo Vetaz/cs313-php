@@ -1,5 +1,4 @@
 <?php
-echo sys_get_temp_dir();
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 session_start();
@@ -29,7 +28,7 @@ if (isset($_FILES["filename"])) {
     alert($errors[0]);
     //header("Location: index.html");
   } else {
-    if (move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["filename"]["tmp_name"], 'hello.ged')) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
       $_SESSION['filename'] = $target_file;
       header("Location: basic.php");
