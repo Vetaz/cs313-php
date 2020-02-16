@@ -34,6 +34,9 @@
     }
 
 
+  } else {
+    echo "Username or password not given.";
+
   }
 
   ?>
