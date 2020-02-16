@@ -9,8 +9,8 @@ function alert($msg) {
 
 if (isset($_FILES["filename"])) {
   $errors = array();
-  $target_dir = "tempUploads/";
-  $target_file = $target_dir . "USERNAME" . basename(date('YmdHis') . ".ged");
+  $target_dir = '/app/web/Relationships/';
+  $target_file = $target_dir . 'hello.ged';
   $fileType = strtolower(pathinfo($_FILES["filename"]["name"], PATHINFO_EXTENSION));
 
   // File can only be a .ged file.
@@ -28,9 +28,9 @@ if (isset($_FILES["filename"])) {
     alert($errors[0]);
     //header("Location: index.html");
   } else {
-    if (move_uploaded_file($_FILES["filename"]["tmp_name"], '/app/web/Relationships/hello.ged')) {
+    if (move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file)) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
-      $_SESSION['filename'] = '/app/web/Relationships/hello.ged';
+      $_SESSION['filename'] = $target_file;
       header("Location: basic.php");
     } else {
       $errors[] = "Sorry, there was an error uploading your file.<br>Page will redirect to the upload page.";
