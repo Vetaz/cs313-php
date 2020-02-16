@@ -19,7 +19,7 @@
     $usr = $db->prepare($query);
     $usr->bindValue(':username', $username);
     $usr->execute();
-    while ($row = $desiredUsernameDB->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $usr->fetch(PDO::FETCH_ASSOC)) {
       $usernameInSystem = $row['username'];
       $passwordInSystem = $row['pass'];
     }
