@@ -2,6 +2,7 @@
 session_start();
 require 'lib/Gedcom/bootstrap.php';
 require "dbConnect.php";
+$db = get_db();
 
 $file = $_SESSION['filename'];
 
@@ -57,7 +58,9 @@ foreach ($gedcom->getIndi() as $indi) {
   }
   echo $id . " " . $sex . " " . $name . 
   " " . $birthDate . " " . $birthPlace . " " . $deathDate . " " . $deathPlace . "<br>";
-  $query = "INSERT INTO person (id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$id', ";
+  $query = "INSERT INTO person (id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$id', '$sex', '$name', '$birthDate', '$birthPlace', '$deathDate','$deathPlace'";
+  $insertPerson = $db->prepare($query);
+  $insertPerson->execute();
   foreach ($indi->famc as $family) {
     $parentId[] = $gedcom->getFam()[$family->famc]->wife;
     $parentId[] = $gedcom->getFam()[$family->famc]->husb;
