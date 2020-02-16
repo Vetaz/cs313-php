@@ -1,5 +1,5 @@
 <?php
-require "userRequired.php";
+//require "userRequired.php";
 date_default_timezone_set('MST');
 function alert($msg)
 {
@@ -25,7 +25,7 @@ if (isset($_FILES["filename"])) {
   if (empty($errors) == false) {
     $errors[] = "Your file was not uploaded.<br>Page will redirect to the upload page.<br>";
     alert($errors[0]);
-    header("Location: index.html");
+    //header("Location: index.html");
   } else {
     if (move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file)) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
@@ -35,13 +35,13 @@ if (isset($_FILES["filename"])) {
     } else {
       $errors[] = "Sorry, there was an error uploading your file.<br>Page will redirect to the upload page.";
       alert($errors[0]);
-      header("Location: index.html");
+      //header("Location: index.html");
     }
   }
 } else {
   echo "<p>Something went wrong. Redirecting to upload page.</p>";
   alert($errors);
-  header("Location: index.html");
+  //header("Location: index.html");
 }
 
 
