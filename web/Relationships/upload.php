@@ -28,7 +28,7 @@ if (isset($_FILES["filename"])) {
     alert($errors[0]);
     //header("Location: index.html");
   } else {
-    if (move_uploaded_file($_FILES["filename"]["tmp_name"], '/app/tmp/hello.ged')) {
+    if (move_uploaded_file($_FILES["filename"]["tmp_name"], '/app/web/hello.ged')) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
       $_SESSION['filename'] = $target_file;
       //header("Location: basic.php");
