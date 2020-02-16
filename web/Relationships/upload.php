@@ -30,8 +30,8 @@ if (isset($_FILES["filename"])) {
   } else {
     if (move_uploaded_file($_FILES["filename"]["tmp_name"], '/app/web/Relationships/hello.ged')) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
-      $_SESSION['filename'] = $target_file;
-      //header("Location: basic.php");
+      $_SESSION['filename'] = '/app/web/Relationships/hello.ged';
+      header("Location: basic.php");
     } else {
       $errors[] = "Sorry, there was an error uploading your file.<br>Page will redirect to the upload page.";
       foreach($errors as $error)
