@@ -1,10 +1,5 @@
 <?php 
-  session_start();
-  if (isset($_SESSION['username'])) {
-    echo $_SESSION['username'];
-  } else {
-    header('Location: no-username.html');
-  }
+  require "userRequired.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +21,8 @@
   </header>
   <main>
     <div>
+      <p> Hello <?php $username ?>!</p>
+      <p>Type the ID number of each person for who you would like to see the relationship for.</p>
       <form method="get" action="relationship-viewer.php">
         <p>Type ID of person 1:</p>
         <input type="text" name="id1">

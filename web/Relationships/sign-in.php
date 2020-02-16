@@ -32,8 +32,6 @@
       echo "Either username or password incorrect or no account made.";
       header("Location: index.html");
     }
-
-
   } else {
     echo "Username or password not given.";
 
