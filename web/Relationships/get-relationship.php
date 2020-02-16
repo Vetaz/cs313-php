@@ -1,3 +1,11 @@
+<?php 
+  session_start();
+  if (isset($_SESSION['username'])) {
+    echo $_SESSION['username'];
+  } else {
+    header('Location: no-username.html');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

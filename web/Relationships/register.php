@@ -18,11 +18,7 @@
     while ($row = $desiredUsernameDB->fetch(PDO::FETCH_ASSOC)) {
       $usernameInSystem = $row['username'];
     }
-    var_dump($desiredUsernameDB);
-    echo "<br> desired username: <bR>";
-    var_dump($desiredUsername);
-    echo "<br> username in system: <bR>";
-    var_dump($usernameInSystem);
+    
     if (empty($usernameInSystem)) { # If the username is not in the system already
       # the account can be created and turned to sign in page.
       echo "That username is not in the system :)";
@@ -37,12 +33,12 @@
       $insertUsr->bindValue(':lastName', $lastName);
       $insertUsr->bindValue(':password', $password);
       $insertUsr->execute();
-      
-      header("Location: sign-in.html");
+
+      header("Location: index.html");
     } else {
       # else redirect to register screen.
       echo "That username is already in the system!!";
-      header("Location: index.html");
+      header("Location: register.html");
     }
 
 

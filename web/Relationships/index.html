@@ -15,18 +15,18 @@
         <a href="index.html" class="button">Home</a>
       </nav>
     </header>
-    <form method="POST">
+    <form method="POST" action="sign-in.php">
       <div class="space-after">
         <label for="username">Username</label>
         <div>
-          <input type="text" id="username" name="username" maxlength="64" />
+          <input type="text" id="username" name="username" maxlength="64" required/>
         </div>
         <label for="password">Password</label>
         <div>
-          <input type="text" id="password" name="password" maxlength="64" />
+          <input type="text" id="password" name="password" maxlength="64" required/>
         </div>
       </div>
-      <input class="button" type="submit" value="Log In" />
+      <input class="button" type="submit" value="Sign In" />
       <p>
         Haven't created an account yet?
         <a id="register" href="register.html">Register here.</a>
