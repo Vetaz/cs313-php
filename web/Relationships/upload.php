@@ -28,10 +28,10 @@ if (isset($_FILES["filename"])) {
     alert($errors[0]);
     //header("Location: index.html");
   } else {
-    if (move_uploaded_file($_FILES["filename"]["tmp_name"], 'hello.ged')) {
+    if (move_uploaded_file($_FILES["filename"]["tmp_name"], 'tempUploads/hello.ged')) {
       echo "The file " . basename($_FILES["filename"]["name"]) . " has been uploaded.<br>";
       $_SESSION['filename'] = $target_file;
-      header("Location: basic.php");
+      //header("Location: basic.php");
     } else {
       $errors[] = "Sorry, there was an error uploading your file.<br>Page will redirect to the upload page.";
       foreach($errors as $error)
