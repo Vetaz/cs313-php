@@ -30,7 +30,7 @@ $insertGedcom->execute();
 $gedcom_id = $db->lastInsertId('gedcom_id_seq');
 echo "Gedcom_id: $gedcom_id";
 foreach ($gedcom->getIndi() as $indi) {
-  $id = $indi->id;
+  $id = substr($indi->id, 1); //only get the number out of the ID.
   $sex = $indi->sex;
   if ($indi->name[0]->givn) {
   $givenNames = $indi->name[0]->givn;
