@@ -32,7 +32,6 @@ echo "Gedcom_id: $gedcom_id";
 foreach ($gedcom->getIndi() as $indi) {
   $id = $indi->id;
   $sex = $indi->sex;
-  $fullname = "NO NAME"; //This should always be replaced.
   if ($indi->name[0]->givn) {
   $givenNames = $indi->name[0]->givn;
   }
