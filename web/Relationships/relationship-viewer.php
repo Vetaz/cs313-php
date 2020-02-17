@@ -8,12 +8,10 @@ function findRelationship($id1, $id2)
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
   $results = null;
-  if (($id1 == 'g1i1') && ($id2 == 'g1i3')) {
-    $results = array(
-      'g1i1' => 'Self',
-      'g1i2' => 'Spouse',
-      'g1i3' => 'Parent'
-    );
+  $results = array(
+    $id1 => 'Self',
+    $id2 => 'Other'
+  );
   }
   $relationship = [];
   foreach ($results as $id => $rel) {

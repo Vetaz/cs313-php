@@ -27,15 +27,11 @@
   <main>
     <div>
       <p>Type the ID number of each person for who you would like to see the relationship for.</p>
-      <form method="get" action="relationship-viewer.php">
-        <p>Type ID of person 1 (only number):</p>
-        <input type="text" name="id1">
-        <p>Type ID of person 2 (only number):</p>
-        <input type="text" name="id2">
+      <form method="get" action="get-relationship-2.php">
         <p>Select the gedcom</p>
         <select name="gedcom_id">
           <?php
-            $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username'");
+            $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username' ORDER BY id");
             $gedcomSelect->execute();
             while ($row = $gedcomSelect->fetch(PDO::FETCH_ASSOC)) {
               $gedcomId = $row['id'];
