@@ -1,8 +1,7 @@
 <?php
  require 'userRequired.php';
 
-function findRelationship($id1, $id2)
-{
+function findRelationship($id1, $id2) {
   require "dbConnect.php";
   $db = get_db();
   # Results is the result of the path to get from one id to another.
@@ -12,7 +11,7 @@ function findRelationship($id1, $id2)
     $id1 => 'Self',
     $id2 => 'Other'
   );
-  }
+  
   $relationship = [];
   foreach ($results as $id => $rel) {
     $person = $db->prepare("SELECT name, id, birthdate, deathdate FROM person WHERE id = '$id'");
