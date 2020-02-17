@@ -34,12 +34,15 @@ foreach ($gedcom->getIndi() as $indi) {
   $sex = $indi->sex;
   if ($indi->name[0]->givn) {
   $givenNames = $indi->name[0]->givn;
+  echo "$givenNames<br>";
   }
   if ($indi->name[0]->surn) {
   $surname =  $indi->name[0]->surn;
+  echo "$surname<br>";
   }
   if (($indi->name[0]->givn == NULL) && ($indi->name[0]->surn == NULL)) {
   $fullname = $indi->name[0]->name;
+  echo "$fullname<br>";
   }
   $birthDate = "";
   $birthPlace = "";
@@ -71,6 +74,7 @@ foreach ($gedcom->getIndi() as $indi) {
   
   $query = "INSERT INTO person (gedcom_id, id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$gedcom_id', '$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
   echo $query;
+  echo "<br><br>";
   $insertPerson = $db->prepare($query);
   $insertPerson->execute();
   foreach ($indi->famc as $family) {
