@@ -1,11 +1,11 @@
-DROP TABLE person_spouse CASCADE;
+DROP TABLE person_spouse;
 
-DROP TABLE person_parent CASCADE;
+DROP TABLE person_parent;
 
-DROP TABLE person_child CASCADE;
+DROP TABLE person_child;
 
-DROP TABLE usr CASCADE;
+DROP TABLE person;
 
-DROP TABLE gedcom CASCADE;
+DROP TABLE gedcom;
 
-DROP TABLE person CASCADE;
+DROP TABLE usr;

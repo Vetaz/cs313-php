@@ -1,5 +1,5 @@
 <?php
-session_start();
+require 'userRequired.php';
 require 'lib/Gedcom/bootstrap.php';
 require "dbConnect.php";
 $db = get_db();
@@ -20,7 +20,13 @@ $errors = $parser->getErrors();
 if (!empty($errors))
   echo 'The following parser errors occurred: <pre>' . print_r($parser->getErrors(), true) . '</pre>';
 
+$query = "INSERT INTO gedcom (username) VALUES ('$username')";
 
+echo $query;
+$insertGedcom =$db->prepare($query);
+$insertGedcom->execute();
+$gedcom_id = $pdo->lastInsertId('gedcom_id');
+echo "Gedcom_id: $gedcom_id";
 foreach ($gedcom->getIndi() as $indi) {
   $id = $indi->id;
   $sex = $indi->sex;
@@ -56,9 +62,9 @@ foreach ($gedcom->getIndi() as $indi) {
   } else {
     $name = $fullname;
   }
-  echo $id . " " . $sex . " " . $name . 
-  " " . $birthDate . " " . $birthPlace . " " . $deathDate . " " . $deathPlace . "<br>";
-  $query = "INSERT INTO person (id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
+  
+  $query = "INSERT INTO person (gedcom_id, id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$gedcom_id', '$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
+  echo $query;
   $insertPerson = $db->prepare($query);
   $insertPerson->execute();
   foreach ($indi->famc as $family) {
