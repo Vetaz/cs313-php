@@ -1,5 +1,7 @@
 <?php 
   require "userRequired.php";
+  require "dbConnect.php";
+  $db = get_db();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +28,21 @@
     <div>
       <p>Type the ID number of each person for who you would like to see the relationship for.</p>
       <form method="get" action="relationship-viewer.php">
-        <p>Type ID of person 1:</p>
+        <p>Type ID of person 1 (only number):</p>
         <input type="text" name="id1">
-        <p>Type ID of person 2:</p>
+        <p>Type ID of person 2 (only number):</p>
         <input type="text" name="id2">
+        <p>Select the gedcom</p>
+        <select name="gedcom_id">
+          <?php
+            $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = $username");
+            $gedcomSelect->execute();
+            while ($row = $gedcomSelect->fetch(PDO::FETCH_ASSOC)) {
+              $gedcomId = $row['id'];
+              echo "<option value='$gedcomId'>Gedcom $gedcomId</option>";
+            }
+          ?>
+        </select>
         <br>
         <input class="button" type="submit">
       </form>

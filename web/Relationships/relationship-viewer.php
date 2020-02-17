@@ -1,5 +1,5 @@
 <?php
-
+ require 'userRequired.php';
 
 function findRelationship($id1, $id2)
 {
@@ -67,7 +67,7 @@ function findRelationship($id1, $id2)
     $id1 = null;
     $id2 = null;
     $relationship = null;
-    if (isset($_GET['id1']) && isset($_GET['id2'])) {
+    if (isset($_GET['id1']) && isset($_GET['id2']) && isset($_GET['gedcom_id'])) {
       $id1 = $_GET['id1'];
       $id2 = $_GET['id2'];
       $relationship = findRelationship($id1, $id2);
