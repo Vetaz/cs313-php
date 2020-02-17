@@ -15,14 +15,15 @@
   <header>
     <h1>Get the Relationship between Two People in Your Gedcom</h1>
     <nav>
-    <a href="uploadGedcom.php" class="button">Upload Your Gedcom</a>
-        <a href="get-relationship.php" class="button">Get Relationships</a>
+      <a href="uploadGedcom.php" class="button">Upload Your Gedcom</a>
+      <a href="get-relationship.php" class="button">Get Relationships</a>
+      <?php if (isset($username)) {
+      echo "<div><p>Signed in as $username </p></div>";
+      } ?>
     </nav>
   </header>
   <main>
     <div>
-      <p> Hello <?php echo $username ?>!</p>
-      <?php echo "testing for " . $_SESSION['username'] ?>
       <p>Type the ID number of each person for who you would like to see the relationship for.</p>
       <form method="get" action="relationship-viewer.php">
         <p>Type ID of person 1:</p>

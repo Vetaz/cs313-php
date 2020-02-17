@@ -53,8 +53,11 @@ function findRelationship($id1, $id2)
   <header>
     <h1>Relationship Viewer</h1>
     <nav>
+      <a href="uploadGedcom.php" class="button">Upload Your Gedcom</a>
       <a href="get-relationship.php" class="button">Get Relationships</a>
-      <a href="index.html" class="button">Home</a>
+      <?php if (isset($username)) {
+        echo "<div><p>Signed in as $username </p></div>";
+      } ?>
     </nav>
   </header>
   <main>
