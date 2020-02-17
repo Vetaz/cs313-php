@@ -25,7 +25,7 @@ $query = "INSERT INTO gedcom (username) VALUES ('$username')";
 echo $query;
 $insertGedcom =$db->prepare($query);
 $insertGedcom->execute();
-$gedcom_id = $pdo->lastInsertId('gedcom_id');
+$gedcom_id = $pdo->lastInsertId('gedcom_id_seq');
 echo "Gedcom_id: $gedcom_id";
 foreach ($gedcom->getIndi() as $indi) {
   $id = $indi->id;
