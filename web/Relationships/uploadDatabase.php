@@ -44,23 +44,23 @@ foreach ($gedcom->getIndi() as $indi) {
   foreach ($indi->even as $event) {
     if ($event->type == 'BIRT') {
       if ($event->date != NULL) {
-        $birthDate = $event->date;
+        $birthDate = htmlspecialchars($event->date, ENT_QUOTES);
       }
       if ($event->plac != NULL) {
-        $birthPlace = $event->plac->plac;
+        $birthPlace = htmlspecialchars($event->plac->plac, ENT_QUOTES);
       }
     }
     if ($event->type == 'DEAT') {
       if ($event->date != NULL) {
-        $deathDate = $event->date;
+        $deathDate = htmlspecialchars($event->date, ENT_QUOTES);
       }
       if ($event->plac != NULL) {
-        $deathPlace = $event->plac->plac;
+        $deathPlace = htmlspecialchars($event->plac->plac, ENT_QUOTES);
       }
     }
   }
   if (empty($fullname)) {
-    $name = htmlspecialchars(($givenNames . " " . $surname),ENT_QUOTES); 
+    $name = htmlspecialchars(($givenNames . " " . $surname), ENT_QUOTES); 
   } else {
     $name = htmlspecialchars($fullname, ENT_QUOTES);
   }
