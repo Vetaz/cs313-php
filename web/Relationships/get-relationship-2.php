@@ -12,7 +12,8 @@ if (isset($_GET['gedcom_id'])) {
 
 function personSelector()
 {
-  $personSelect = $db->prepare("SELECT id, name, birthdate FROM person WHERE gedcom_id = '$gedcom_id' ORDER BY id");
+  $gedcom_id = $GLOBALS['gedcom_id'];
+  $personSelect = $GLOBALS['db']->prepare("SELECT id, name, birthdate FROM person WHERE gedcom_id = '$gedcom_id' ORDER BY id");
   $personSelect->execute();
   while ($row = $personSelect->fetch(PDO::FETCH_ASSOC)) {
     $personId = $row['id'];
