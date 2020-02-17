@@ -1,14 +1,26 @@
-<?php 
-  require "userRequired.php";
-  require "dbConnect.php";
-  $db = get_db();
+<?php
+require "userRequired.php";
+require "dbConnect.php";
+$db = get_db();
 
-  if (isset($_GET['gedcom_id'])) {
-    $gedcom_id = htmlspecialchars($_GET['gedcom_id']);
-    $_SESSION['gedcom_id'] = $gedcom_id;
-  } else {
-    header('Location: get-relationship.php');
+if (isset($_GET['gedcom_id'])) {
+  $gedcom_id = htmlspecialchars($_GET['gedcom_id']);
+  $_SESSION['gedcom_id'] = $gedcom_id;
+} else {
+  header('Location: get-relationship.php');
+}
+
+function personSelector()
+{
+  $personSelect = $db->prepare("SELECT id, name, birthdate FROM person WHERE gedcom_id = '$gedcom_id' ORDER BY id");
+  $personSelect->execute();
+  while ($row = $personSelect->fetch(PDO::FETCH_ASSOC)) {
+    $personId = $row['id'];
+    $personName = $row['name'];
+    $personBirthdate = $row['birthdate'];
+    echo "<option value='$personId'>Individual $personId ($personName b. $personBirthdate)</option>";
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +39,7 @@
       <a href="uploadGedcom.php" class="button">Upload Your Gedcom</a>
       <a href="get-relationship.php" class="button">Get Relationships</a>
       <?php if (isset($username)) {
-      echo "<div><p>Signed in as $username </p></div>";
+        echo "<div><p>Signed in as $username </p></div>";
       } ?>
     </nav>
   </header>
@@ -37,25 +49,15 @@
       <form method="get" action="relationship-viewer.php">
         <p>Select ID of person 1:</p>
         <select name="id1">
-        <?php
-          $personSelect = $db->prepare("SELECT id FROM person WHERE gedcom_id = '$gedcom_id' ORDER BY id");
-          $personSelect->execute();
-          while ($row = $personSelect->fetch(PDO::FETCH_ASSOC)) {
-            $personId = $row['id'];
-            echo "<option value='$personId'>Individual $personId</option>";
-          }
-        ?>
+          <?php
+            personSelector();
+          ?>
         </select>
         <p>Select ID of person 2:</p>
         <select name="id2">
-        <?php
-          $personSelect = $db->prepare("SELECT id FROM person WHERE gedcom_id = '$gedcom_id' ORDER BY id");
-          $personSelect->execute();
-          while ($row = $personSelect->fetch(PDO::FETCH_ASSOC)) {
-            $personId = $row['id'];
-            echo "<option value='$personId'>Individual $personId</option>";
-          }
-        ?>
+          <?php
+            personSelector();
+          ?>
         </select>
         <input class="button" type="submit">
       </form>

@@ -11,7 +11,7 @@ function findRelationship($id1, $id2) {
     $id1 => 'Self',
     $id2 => 'Other'
   );
-  
+
   $relationship = [];
   foreach ($results as $id => $rel) {
     $person = $db->prepare("SELECT name, id, birthdate, deathdate FROM person WHERE id = '$id'");
@@ -64,7 +64,7 @@ function findRelationship($id1, $id2) {
     $id1 = null;
     $id2 = null;
     $relationship = null;
-    if (isset($_GET['id1']) && isset($_GET['id2']) && isset($_GET['gedcom_id'])) {
+    if (isset($_GET['id1']) && isset($_GET['id2'])) {
       $id1 = $_GET['id1'];
       $id2 = $_GET['id2'];
       $relationship = findRelationship($id1, $id2);
