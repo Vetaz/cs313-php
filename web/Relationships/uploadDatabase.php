@@ -60,9 +60,9 @@ foreach ($gedcom->getIndi() as $indi) {
     }
   }
   if (empty($fullname)) {
-    $name = $givenNames . " " . $surname; 
+    $name = htmlspecialchars(($givenNames . " " . $surname),ENT_QUOTES); 
   } else {
-    $name = $fullname;
+    $name = htmlspecialchars($fullname, ENT_QUOTES);
   }
   
   $query = "INSERT INTO person (gedcom_id, id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$gedcom_id', '$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
