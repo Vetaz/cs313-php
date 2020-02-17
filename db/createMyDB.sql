@@ -2,7 +2,7 @@ CREATE TABLE usr (
   username VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
   firstName VARCHAR(32) NOT NULL,
   lastName VARCHAR(64) NOT NULL,
-  pass VARCHAR(100)
+  pass VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE gedcom (
@@ -12,7 +12,7 @@ CREATE TABLE gedcom (
 );
 
 CREATE TABLE person (
-  id VARCHAR(100) NOT NULL UNIQUE,
+  id VARCHAR(100) NOT NULL,
   gedcom_id INT NOT NULL REFERENCES gedcom(id) ON DELETE CASCADE,
   -- When gedcom is deleted, the people in it are deleted.
   name VARCHAR(100) NOT NULL,

@@ -24,3 +24,6 @@ WHERE pChild.id = 'g1i2';
 INSERT INTO person (id, gedcom_id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('I1', 1, 'Jordi Kloosterboer', 'M', '1996', 'Neth', '','');
 
 INSERT INTO person (id, gedcom_id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('I2', 1, 'female Kloosterboer', 'F', '2000', 'USA', '','');
+
+-- Selects all people's ids from all gedcoms from the user named U.
+select person.id from person inner join gedcom on person.gedcom_id = gedcom.id inner join usr on usr.username = gedcom.username where usr.username = 'U';
