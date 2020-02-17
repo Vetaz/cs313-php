@@ -41,13 +41,11 @@ foreach ($gedcom->getIndi() as $indi) {
   if (($indi->name[0]->givn == NULL) && ($indi->name[0]->surn == NULL)) {
   $fullname = $indi->name[0]->name;
   }
-  
+  $birthDate = "";
+  $birthPlace = "";
+  $deathDate = "";
+  $deathPlace = "";
   foreach ($indi->even as $event) {
-    $birthDate = "";
-    $birthPlace = "";
-    $deathDate = "";
-    $deathPlace = "";
-    
     if ($event->type == 'BIRT') {
       if ($event->date != NULL) {
         $birthDate = htmlspecialchars($event->date, ENT_QUOTES);

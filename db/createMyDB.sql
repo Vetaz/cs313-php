@@ -12,7 +12,7 @@ CREATE TABLE gedcom (
 );
 
 CREATE TABLE person (
-  id VARCHAR(100) NOT NULL,
+  id INT NOT NULL,
   gedcom_id INT NOT NULL REFERENCES gedcom(id) ON DELETE CASCADE,
   -- When gedcom is deleted, the people in it are deleted.
   name VARCHAR(100) NOT NULL,
