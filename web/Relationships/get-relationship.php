@@ -35,7 +35,7 @@
         <p>Select the gedcom</p>
         <select name="gedcom_id">
           <?php
-            $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = $username");
+            $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username'");
             $gedcomSelect->execute();
             while ($row = $gedcomSelect->fetch(PDO::FETCH_ASSOC)) {
               $gedcomId = $row['id'];
