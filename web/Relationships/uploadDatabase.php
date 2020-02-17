@@ -32,6 +32,7 @@ echo "Gedcom_id: $gedcom_id";
 foreach ($gedcom->getIndi() as $indi) {
   $id = $indi->id;
   $sex = $indi->sex;
+  $fullname = "NO NAME"; //This should always be replaced.
   if ($indi->name[0]->givn) {
   $givenNames = $indi->name[0]->givn;
   }
@@ -41,7 +42,13 @@ foreach ($gedcom->getIndi() as $indi) {
   if (($indi->name[0]->givn == NULL) && ($indi->name[0]->surn == NULL)) {
   $fullname = $indi->name[0]->name;
   }
+  
   foreach ($indi->even as $event) {
+    $birthDate = "";
+    $birthPlace = "";
+    $deathDate = "";
+    $deathPlace = "";
+    
     if ($event->type == 'BIRT') {
       if ($event->date != NULL) {
         $birthDate = htmlspecialchars($event->date, ENT_QUOTES);
