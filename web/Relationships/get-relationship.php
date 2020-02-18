@@ -1,7 +1,7 @@
-<?php 
-  require "userRequired.php";
-  require "dbConnect.php";
-  $db = get_db();
+<?php
+require "userRequired.php";
+require "dbConnect.php";
+$db = get_db();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@
       <a href="uploadGedcom.php" class="button">Upload Your Gedcom</a>
       <a href="get-relationship.php" class="button">Get Relationships</a>
       <?php if (isset($username)) {
-      echo "<div><p>Signed in as $username </p></div>";
+        echo "<div><p>Signed in as $username </p></div>";
       } ?>
     </nav>
   </header>
@@ -31,12 +31,12 @@
         <p>Select the gedcom</p>
         <select name="gedcom_id">
           <?php
-            $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username' ORDER BY id");
-            $gedcomSelect->execute();
-            while ($row = $gedcomSelect->fetch(PDO::FETCH_ASSOC)) {
-              $gedcomId = $row['id'];
-              echo "<option value='$gedcomId'>Gedcom $gedcomId</option>";
-            }
+          $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username' ORDER BY id");
+          $gedcomSelect->execute();
+          while ($row = $gedcomSelect->fetch(PDO::FETCH_ASSOC)) {
+            $gedcomId = $row['id'];
+            echo "<option value='$gedcomId'>Gedcom $gedcomId</option>";
+          }
           ?>
         </select>
         <br>

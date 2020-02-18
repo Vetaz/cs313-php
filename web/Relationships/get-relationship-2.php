@@ -51,13 +51,13 @@ function personSelector()
         <p>Select ID of person 1:</p>
         <select name="id1">
           <?php
-            personSelector();
+          personSelector();
           ?>
         </select>
         <p>Select ID of person 2:</p>
         <select name="id2">
           <?php
-            personSelector();
+          personSelector();
           ?>
         </select>
         <input class="button" type="submit">

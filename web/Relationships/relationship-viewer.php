@@ -1,7 +1,8 @@
 <?php
- require 'userRequired.php';
+require 'userRequired.php';
 
-function findRelationship($id1, $id2) {
+function findRelationship($id1, $id2)
+{
   require "dbConnect.php";
   $db = get_db();
   # Results is the result of the path to get from one id to another.
@@ -58,7 +59,7 @@ function findRelationship($id1, $id2) {
     </nav>
   </header>
   <main>
-    <p> Currently only shows the two people selected. I am working on an algorithm 
+    <p> Currently only shows the two people selected. I am working on an algorithm
       that will be working by the end of this week</p>
     <?php
 
