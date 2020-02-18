@@ -9,19 +9,20 @@ $db = get_db();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Get Relationship</title>
+  <title>Privatize Your Gedcom</title>
   <link rel="stylesheet" href="relationship.css">
 </head>
 
 <body>
   <header>
-    <h1>Get the Relationship between Two People in Your Gedcom</h1>
+    <h1>Privatize People Living People In Your Gedcom</h1>
     <?php require 'nav.php'; ?>
   </header>
   <main>
     <div>
-      <form method="get" action="get-relationship-2.php">
+      <form method="POST" action="privatizing.php">
         <p>Select the gedcom</p>
+        <p>All people withing the gedcom who have no death date and death place will have their data privatized. This means that their names will change to 'Living' and their birth info will be deleted.</p>
         <select name="gedcom_id">
           <?php
           $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username' ORDER BY id");

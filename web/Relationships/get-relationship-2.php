@@ -40,7 +40,6 @@ function personSelector()
   </header>
   <main>
     <div>
-      <p>Type the ID number of each person for who you would like to see the relationship for.</p>
       <form method="get" action="relationship-viewer.php">
         <p>Select ID of person 1:</p>
         <select name="id1">
