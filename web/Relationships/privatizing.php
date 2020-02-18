@@ -1,6 +1,7 @@
 <?php
 require 'userRequired.php';
 require 'dbConnect.php';
+$db = get_db();
 
 if (isset($_POST['gedcom_id'])) {
   $gedcom_id = htmlspecialchars($_POST['gedcom_id']);
