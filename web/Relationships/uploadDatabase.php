@@ -87,7 +87,7 @@
     }
 
     $query = "INSERT INTO person (gedcom_id, id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$gedcom_id', '$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
-
+/*
     echo "<p>Individual $id ";
     if ($name) {
       echo "Name: $name ";
@@ -106,7 +106,7 @@
       echo "Death place: $deathPlace ";
     }
     echo "</p>";
-
+*/
     $insertPerson = $db->prepare($query);
     $insertPerson->execute();
     foreach ($indi->famc as $family) {
@@ -124,16 +124,9 @@
       }
     }
   } 
-  $okToDepart = true;
+  header("Location: get-relationship.php");
   ?>
 
 </body>
 
 </html>
-
-<?php
-if ($okToDepart) {
-  echo "Leaving...";
-  header("Location: get-relationship.php");
-}
-?>
