@@ -11,6 +11,7 @@
 <body>
   <h1>Please wait while we upload your file!</h1>
   <?php
+  $okToDepart = false;
   error_reporting(E_ALL);
   set_time_limit(0);
   require 'userRequired.php';
@@ -122,6 +123,7 @@
         $child;
       }
     }
+    $okToDepart = true;
   } ?>
 
 </body>
@@ -129,5 +131,7 @@
 </html>
 
 <?php
-header('Location: get-relationship.php');
+if ($okToDepart) {
+  header('Location: get-relationship.php');
+}
 ?>

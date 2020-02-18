@@ -50,13 +50,7 @@ function findRelationship($id1, $id2)
 <body>
   <header>
     <h1>Relationship Viewer</h1>
-    <nav>
-      <a href="uploadGedcom.php" class="button">Upload Your Gedcom</a>
-      <a href="get-relationship.php" class="button">Get Relationships</a>
-      <?php if (isset($username)) {
-        echo "<div><p>Signed in as $username </p></div>";
-      } ?>
-    </nav>
+    <?php require 'nav.php'; ?>
   </header>
   <main>
     <p> Currently only shows the two people selected. I am working on an algorithm

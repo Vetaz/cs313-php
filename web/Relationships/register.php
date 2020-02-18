@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Registering</title>
 </head>
+
 <body>
   <?php
-  if (isset($_POST['username']) && isset($_POST['password']) && 
-      isset($_POST['firstName']) && isset($_POST['lastName'])) {
+  if (
+    isset($_POST['username']) && isset($_POST['password']) &&
+    isset($_POST['firstName']) && isset($_POST['lastName'])
+  ) {
     $desiredUsername = htmlspecialchars($_POST['username']);
     require "dbConnect.php";
     $db = get_db();
@@ -18,7 +22,7 @@
     while ($row = $desiredUsernameDB->fetch(PDO::FETCH_ASSOC)) {
       $usernameInSystem = $row['username'];
     }
-    
+
     if (empty($usernameInSystem)) { # If the username is not in the system already
       # the account can be created and turned to sign in page.
       echo "That username is not in the system :)";
@@ -40,10 +44,8 @@
       echo "That username is already in the system!!";
       header("Location: register.html");
     }
-
-
   }
-
   ?>
 </body>
+
 </html>
