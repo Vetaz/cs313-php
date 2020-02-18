@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>Please wait while we upload your file!<p>
+
+
+
 <?php
 error_reporting(E_ALL);
 set_time_limit(0);
@@ -24,31 +36,26 @@ if (!empty($errors))
 
 $query = "INSERT INTO gedcom (username) VALUES ('$username')";
 
-echo $query;
-$insertGedcom =$db->prepare($query);
+$insertGedcom = $db->prepare($query);
 $insertGedcom->execute();
 $gedcom_id = $db->lastInsertId('gedcom_id_seq');
-echo "Gedcom_id: $gedcom_id";
 foreach ($gedcom->getIndi() as $indi) {
   $id = null;
   $sex = null;
   $givenNames = null;
   $surname = null;
   $fullname = null;
-  
+
   $id = substr($indi->id, 1); //only get the number out of the ID.
   $sex = $indi->sex;
   if ($indi->name[0]->givn) {
-  $givenNames = $indi->name[0]->givn;
-  echo "$givenNames<br>";
+    $givenNames = $indi->name[0]->givn;
   }
   if ($indi->name[0]->surn) {
-  $surname =  $indi->name[0]->surn;
-  echo "$surname<br>";
+    $surname =  $indi->name[0]->surn;
   }
   if (($indi->name[0]->givn == NULL) && ($indi->name[0]->surn == NULL)) {
-  $fullname = $indi->name[0]->name;
-  echo "$fullname<br>";
+    $fullname = $indi->name[0]->name;
   }
   $birthDate = "";
   $birthPlace = "";
@@ -73,14 +80,32 @@ foreach ($gedcom->getIndi() as $indi) {
     }
   }
   if (empty($fullname)) {
-    $name = htmlspecialchars(($givenNames . " " . $surname), ENT_QUOTES); 
+    $name = htmlspecialchars(($givenNames . " " . $surname), ENT_QUOTES);
   } else {
     $name = htmlspecialchars($fullname, ENT_QUOTES);
   }
-  
+
   $query = "INSERT INTO person (gedcom_id, id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$gedcom_id', '$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
-  echo $query;
-  echo "<br><br>";
+
+  echo "<p>Individual $id ";
+  if ($name) {
+    echo "Name: $name ";
+  }
+  echo "Sex: $sex";
+  if ($birthDate != "") {
+    echo "Birth date: $birthDate";
+  }
+  if ($birthPlace != "") {
+    echo "Birth place: $birthPlace";
+  }
+  if ($deathDate != "") {
+    echo "Death date: $deathDate";
+  }
+  if ($deathPlace != "") {
+    echo "Death place: $deathPlace";
+  }
+  echo"</p>";
+
   $insertPerson = $db->prepare($query);
   $insertPerson->execute();
   foreach ($indi->famc as $family) {
@@ -98,4 +123,7 @@ foreach ($gedcom->getIndi() as $indi) {
     }
   }
 }
+header('Location: get-relationship.php');
 ?>
+</body>
+</html>

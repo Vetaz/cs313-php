@@ -58,7 +58,8 @@ function findRelationship($id1, $id2) {
     </nav>
   </header>
   <main>
-
+    <p> Currently only shows the two people selected. I am working on an algorithm 
+      that will be working by the end of this week</p>
     <?php
 
     $id1 = null;
@@ -78,9 +79,8 @@ function findRelationship($id1, $id2) {
           $birthdate = $prop['birthdate'];
           $deathdate = $prop['deathdate'];
           $rel = $prop['rel'];
-          $idNumber = substr($id, strpos($id, "i") + 1);
           echo "<p class='relationship'>$name</p>";
-          echo "<p class='relationship'>$birthdate - $deathdate | $idNumber</p>";
+          echo "<p class='relationship'>$birthdate - $deathdate | $id</p>";
           echo "<p class='relationship'>$rel</p>";
           echo "</div>";
           if ($id2 != $id) {
