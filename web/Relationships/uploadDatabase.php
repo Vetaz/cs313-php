@@ -134,6 +134,6 @@
 <?php
 if ($okToDepart) {
   echo "Leaving...";
-  header('Location: get-relationship.php');
+  header("Location: get-relationship.php");
 }
 ?>
