@@ -116,16 +116,20 @@
     $id = substr($indi->id, 1);
     foreach ($indi->famc as $family) {
       $parentId = substr($gedcom->getFam()[$family->famc]->wife, 1);
-      $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
-      $insertParent = $db->prepare($query);
-      $insertParent->execute();
-      echo $query . "<br>";
+      if ($parentId != '') {
+        $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
+        $insertParent = $db->prepare($query);
+        $insertParent->execute();
+        echo $query . "<br>";
+      }
 
       $parentId = substr($gedcom->getFam()[$family->famc]->husb, 1);
-      $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
-      $insertParent = $db->prepare($query);
-      $insertParent->execute();
-      echo $query . "<br>";
+      if ($parentId != '') {
+        $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
+        $insertParent = $db->prepare($query);
+        $insertParent->execute();
+        echo $query . "<br>";
+      }
     }
     foreach ($indi->fams as $family) {
       if ($indi->sex == 'M') {
@@ -133,17 +137,21 @@
       } else if ($indi->sex == 'F') {
         $spouseId = substr($gedcom->getFam()[$family->fams]->husb, 1);
       }
-      $query = "INSERT INTO person_spouse (gedcom_id, person_id, spouse_id) VALUES ('$gedcom_id', '$id', '$spouseId')";
-      $insertSpouse = $db->prepare($query);
-      $insertSpouse->execute();
-      echo $query . "<br>";
-
-      foreach ($gedcom->getFam()[$family->fams]->chil as $childId) {
-        $childId = substr($childId, 1);
-        $query = "INSERT INTO person_child (gedcom_id, person_id, child_id) VALUES ('$gedcom_id', '$id', '$childId')";
+      if ($spouseId != '') {
+        $query = "INSERT INTO person_spouse (gedcom_id, person_id, spouse_id) VALUES ('$gedcom_id', '$id', '$spouseId')";
         $insertSpouse = $db->prepare($query);
         $insertSpouse->execute();
         echo $query . "<br>";
+      }
+
+      foreach ($gedcom->getFam()[$family->fams]->chil as $childId) {
+        $childId = substr($childId, 1);
+        if ($childId != '') {
+          $query = "INSERT INTO person_child (gedcom_id, person_id, child_id) VALUES ('$gedcom_id', '$id', '$childId')";
+          $insertSpouse = $db->prepare($query);
+          $insertSpouse->execute();
+          echo $query . "<br>";
+        }
       }
     }
   } 
