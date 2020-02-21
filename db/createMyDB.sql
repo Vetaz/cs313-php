@@ -28,27 +28,27 @@ CREATE TABLE person (
 -- I could include differnt types of spouses/parents/children.
 CREATE TABLE person_spouse (
   gedcom_id INT,
-  person_id VARCHAR(100),
-  spouse_id VARCHAR(100),
-  FOREIGN KEY (gedcom_id, person_id) REFERENCES person(gedcom_id,id) ON DELETE CASCADE,
-  FOREIGN KEY (gedcom_id, spouse_id) REFERENCES person(gedcom_id,id) ON DELETE CASCADE
+  person_id INT,
+  spouse_id INT,
+  FOREIGN KEY (gedcom_id, person_id) REFERENCES person(gedcom_id, id) ON DELETE CASCADE,
+  FOREIGN KEY (gedcom_id, spouse_id) REFERENCES person(gedcom_id, id) ON DELETE CASCADE
   -- When the people are deleted, their relationship is deleted.
 );
 
 CREATE TABLE person_parent (
   gedcom_id INT,
-  person_id VARCHAR(100),
-  parent_id VARCHAR(100),
-  FOREIGN KEY (gedcom_id, person_id) REFERENCES person(gedcom_id,id) ON DELETE CASCADE,
-  FOREIGN KEY (gedcom_id, parent_id) REFERENCES person(gedcom_id,id) ON DELETE CASCADE
+  person_id INT,
+  parent_id INT,
+  FOREIGN KEY (gedcom_id, person_id) REFERENCES person(gedcom_id, id) ON DELETE CASCADE,
+  FOREIGN KEY (gedcom_id, parent_id) REFERENCES person(gedcom_id, id) ON DELETE CASCADE
   -- When the people are deleted, their relationship is deleted.
 );
 
 CREATE TABLE person_child (
   gedcom_id INT,
-  person_id VARCHAR(100),
-  child_id VARCHAR(100),
-  FOREIGN KEY (gedcom_id, person_id) REFERENCES person(gedcom_id,id) ON DELETE CASCADE,
-  FOREIGN KEY (gedcom_id, child_id) REFERENCES person(gedcom_id,id) ON DELETE CASCADE
+  person_id INT,
+  child_id INT,
+  FOREIGN KEY (gedcom_id, person_id) REFERENCES person(gedcom_id, id) ON DELETE CASCADE,
+  FOREIGN KEY (gedcom_id, child_id) REFERENCES person(gedcom_id, id) ON DELETE CASCADE
   -- When the people are deleted, their relationship is deleted.
 );

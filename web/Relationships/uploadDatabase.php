@@ -109,7 +109,9 @@
 
     $insertPerson = $db->prepare($query);
     $insertPerson->execute();
+  }
   
+  foreach ($gedcom->getIndi() as $indi) {
     foreach ($indi->famc as $family) {
       $parentId = substr($gedcom->getFam()[$family->famc]->wife, 1);
       $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
