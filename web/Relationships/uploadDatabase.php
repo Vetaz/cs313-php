@@ -87,7 +87,7 @@
     }
 
     $query = "INSERT INTO person (gedcom_id, id, name, sex, birthdate, birthplace, deathdate, deathplace) VALUES ('$gedcom_id', '$id', '$name', '$sex', '$birthDate', '$birthPlace', '$deathDate','$deathPlace')";
-
+/*
     echo "<p>Individual $id ";
     if ($name) {
       echo "Name: $name ";
@@ -106,7 +106,7 @@
       echo "Death place: $deathPlace ";
     }
     echo "</p>";
-
+*/
     $insertPerson = $db->prepare($query);
     $insertPerson->execute();
   }
@@ -120,7 +120,6 @@
         $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
         $insertParent = $db->prepare($query);
         $insertParent->execute();
-        echo $query . "<br>";
       }
 
       $parentId = substr($gedcom->getFam()[$family->famc]->husb, 1);
@@ -128,7 +127,6 @@
         $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
         $insertParent = $db->prepare($query);
         $insertParent->execute();
-        echo $query . "<br>";
       }
     }
     foreach ($indi->fams as $family) {
@@ -141,7 +139,6 @@
         $query = "INSERT INTO person_spouse (gedcom_id, person_id, spouse_id) VALUES ('$gedcom_id', '$id', '$spouseId')";
         $insertSpouse = $db->prepare($query);
         $insertSpouse->execute();
-        echo $query . "<br>";
       }
 
       foreach ($gedcom->getFam()[$family->fams]->chil as $childId) {
@@ -150,7 +147,6 @@
           $query = "INSERT INTO person_child (gedcom_id, person_id, child_id) VALUES ('$gedcom_id', '$id', '$childId')";
           $insertSpouse = $db->prepare($query);
           $insertSpouse->execute();
-          echo $query . "<br>";
         }
       }
     }
