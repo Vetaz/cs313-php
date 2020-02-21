@@ -1,21 +1,22 @@
 <?php
 require 'userRequired.php';
+require "dbConnect.php";
+$db = get_db();
+function findId($gedcomId, $startingId, $endingId) {
+  return array($startingId => 'Self', $endingId => 'Other');
+}
 
-function findRelationship($id1, $id2)
+function findRelationship($gedcomId, $id1, $id2)
 {
-  require "dbConnect.php";
-  $db = get_db();
+  $db = $GLOBALS['db'];
+  
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
-  $results = null;
-  $results = array(
-    $id1 => 'Self',
-    $id2 => 'Other'
-  );
+  $results = findId($gedcomId, $id1, $id2);
 
   $relationship = [];
   foreach ($results as $id => $rel) {
-    $person = $db->prepare("SELECT name, id, birthdate, deathdate FROM person WHERE id = '$id'");
+    $person = $db->prepare("SELECT person.name, person.id, person.birthdate, person.deathdate FROM person INNER JOIN gedcom on gedcom.id = person.gedcom_id WHERE person.id = '$id' and gedcom.id = '$gedcomId'");
     $person->execute();
 
     # Only one row for each person.
@@ -61,9 +62,11 @@ function findRelationship($id1, $id2)
     $id2 = null;
     $relationship = null;
     if (isset($_GET['id1']) && isset($_GET['id2'])) {
+      $gedcomId = $_SESSION['gedcom_id'];
+      
       $id1 = $_GET['id1'];
       $id2 = $_GET['id2'];
-      $relationship = findRelationship($id1, $id2);
+      $relationship = findRelationship($gedcomId, $id1, $id2);
 
       if (sizeof($relationship) > 1) {
         echo "<div class='relationshipCC'>";
