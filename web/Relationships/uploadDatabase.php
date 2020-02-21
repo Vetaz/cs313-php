@@ -118,6 +118,7 @@
       echo $query . "<br>";
 
       $parentId = substr($gedcom->getFam()[$family->famc]->husb, 1);
+      $query = "INSERT INTO person_parent (gedcom_id, person_id, parent_id) VALUES ('$gedcom_id', '$id', '$parentId')";
       $insertParent = $db->prepare($query);
       $insertParent->execute();
       echo $query . "<br>";
