@@ -114,12 +114,13 @@ function getSpouse($gedcomId, $startingId, $endingId, $result) {
       if($r = getSpouse($gedcomId, $spouseId, $endingId, $result)) {
         return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
       }
+      /*
       if($r = getParent($gedcomId, $spouseId, $endingId, $result)) {
         return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
       }
       if($r = getchild($gedcomId, $spouseId, $endingId, $result)) {
         return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
-      }
+      } Takes too long*/
     }
   }
   return array();
