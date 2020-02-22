@@ -2,8 +2,37 @@
 require 'userRequired.php';
 require "dbConnect.php";
 $db = get_db();
-function findId($gedcomId, $startingId, $endingId) {
-  return array($startingId => 'Self', $endingId => 'Other');
+function findId($gedcomId, $startingId, $endingId, $result) {
+  $db = $GLOBALS['db'];
+  $query = "";
+  $result = "";
+  $a1 = array($startingId => 'Self');
+  if ($startingId == $endingId)
+  array_merge($a1, );
+  return $result;
+}
+
+function getParent($gedcomId, $startingId, $endingId, $result) {
+  $db = $GLOBALS['db'];
+  $query = "SELECT pParent.id AS 'parentId'
+  FROM person pParent
+  INNER JOIN person_parent on person_parent.parent_id = pParent.id
+  INNER JOIN person pChild on person_parent.person_id = pChild.id
+  INNER JOIN gedcom ON gedcom.id = person_parent.gedcom_id and gedcom.id = pChild.gedcom_id and gedcom.id = pParent.gedcom_id
+  WHERE gedcom.id = '$gedcomId' and pChild.id = '$startingId'";
+  $returnParent = $db->prepare($query);
+  $returnParent->execute();
+  while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
+    $parentId = $row['parentId'];
+    if ($parentId != '') {
+      if ($parentId == $endingId) {
+        $result = array($parentId => 'Parent');
+      } else {
+        $result = array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
+      }
+    }
+    return $result;
+  }
 }
 
 function findRelationship($gedcomId, $id1, $id2)
@@ -12,10 +41,10 @@ function findRelationship($gedcomId, $id1, $id2)
   
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
-  $results = findId($gedcomId, $id1, $id2);
-
+  $result = getParent($gedcomId, $id1, $id2, array($id1 => 'Self'));
+  var_dump($result);
   $relationship = [];
-  foreach ($results as $id => $rel) {
+  foreach ($result as $id => $rel) {
     $person = $db->prepare("SELECT person.name, person.id, person.birthdate, person.deathdate FROM person INNER JOIN gedcom on gedcom.id = person.gedcom_id WHERE person.id = '$id' and gedcom.id = '$gedcomId'");
     $person->execute();
 
@@ -63,7 +92,7 @@ function findRelationship($gedcomId, $id1, $id2)
     $relationship = null;
     if (isset($_GET['id1']) && isset($_GET['id2'])) {
       $gedcomId = $_SESSION['gedcom_id'];
-      
+
       $id1 = $_GET['id1'];
       $id2 = $_GET['id2'];
       $relationship = findRelationship($gedcomId, $id1, $id2);
