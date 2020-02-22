@@ -4,15 +4,44 @@ require "dbConnect.php";
 $db = get_db();
 function findId($gedcomId, $startingId, $endingId, $result) {
   $db = $GLOBALS['db'];
-  $query = "";
-  $result = "";
-  $a1 = array($startingId => 'Self');
-  if ($startingId == $endingId)
-  array_merge($a1, );
+  if (array_key_exists($startingId, $result))
   return $result;
 }
 
 function getParent($gedcomId, $startingId, $endingId, $result) {
+  $db = $GLOBALS['db'];
+  $query = "SELECT pParent.id AS \"parentId\"
+  FROM person pParent
+  INNER JOIN person_parent on person_parent.parent_id = pParent.id
+  INNER JOIN person pChild on person_parent.person_id = pChild.id
+  INNER JOIN gedcom ON gedcom.id = person_parent.gedcom_id and gedcom.id = pChild.gedcom_id and gedcom.id = pParent.gedcom_id
+  WHERE gedcom.id = '$gedcomId' and pChild.id = '$startingId'";
+  $returnParent = $db->prepare($query);
+  $returnParent->execute();
+  $parentId = null;
+  while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
+    $parentId = $row['parentId'];
+    $sId = "i" . $startingId;
+    $pId = "i" . $parentId;
+    $arrayIds = array("$pId" => "Parent", "$sId" => "Self");
+
+    if (array_key_exists($parentId, $result)) {
+      continue;
+    }
+    if ($parentId == $endingId) {
+      return $arrayIds;
+    } else {
+      $result = array_merge($result, $arrayIds);
+      if($r = getParent($gedcomId, $parentId, $endingId, $result)) {
+        return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
+      }
+    }
+  }
+  return array();
+}
+
+
+function WORKSgetParent($gedcomId, $startingId, $endingId, $result) {
   $db = $GLOBALS['db'];
   $query = "SELECT pParent.id AS \"parentId\"
   FROM person pParent
@@ -105,7 +134,7 @@ function findRelationship($gedcomId, $id1, $id2)
   
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
-  $result = getSpouse($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
+  $result = getParent($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
   var_dump($result);
   $relationship = [];
   foreach ($result as $id => $rel) {
