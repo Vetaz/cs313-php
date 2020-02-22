@@ -25,6 +25,7 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
   $parentId = null;
   while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
     $parentId = $row['parentId'];
+    echo "Parent ID: $parentId<br>";
     if ($parentId != '') {
       if ($parentId == $endingId) {
         $result = array($parentId => 'Parent');
@@ -32,12 +33,13 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
         $result = array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
       }
     } else {
+      echo "Parent id is ''<br>";
       $result = array();
     }
     echo "startingId: $startingId <br>";
     return $result;
   }
-  
+  echo "no parent<br>";
   return array();
 }
 
@@ -57,7 +59,7 @@ function findRelationship($gedcomId, $id1, $id2)
     $id = '';
     $birthdate = '';
     $deathdate = '';
-    
+
     # Only one row for each person.
     while ($row = $person->fetch(PDO::FETCH_ASSOC)) {
       $name = $row['name'];
