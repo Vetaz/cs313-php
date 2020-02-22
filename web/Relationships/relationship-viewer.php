@@ -30,6 +30,8 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
       } else {
         $result = array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
       }
+    } else {
+      $result = array();
     }
     return $result;
   }
