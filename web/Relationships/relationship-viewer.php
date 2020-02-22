@@ -32,7 +32,7 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
     } else {
       $Sid = "i" . $startingId;
       $Pid = "i" . $parentId;
-      $result = array_merge($result, array("$id" => "Parent"));
+      $result = array_merge($result, array("$Pid" => "Parent"));
       if($r = getParent($gedcomId, $parentId, $endingId, $result)) {
         return array_merge(array("$Sid" => "Self", "$Pid" => "Parent"), $r);
       }
