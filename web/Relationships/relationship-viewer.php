@@ -70,13 +70,42 @@ function getChild($gedcomId, $startingId, $endingId, $result) {
   return array();
 }
 
+function getSpouse($gedcomId, $startingId, $endingId, $result) {
+  $db = $GLOBALS['db'];
+  $query = "SELECT s.id AS \"spouseId\"
+  FROM person p
+  INNER JOIN person_spouse on person_spouse.person_id = p.id
+  INNER JOIN person s on person_spouse.spouse_id = s.id
+  INNER JOIN gedcom ON gedcom.id = person_spouse.gedcom_id and gedcom.id = p.gedcom_id and gedcom.id = s.gedcom_id
+  WHERE gedcom.id = '$gedcomId' and p.id = '$startingId';";
+  $returnSpouse = $db->prepare($query);
+  $returnSpouse->execute();
+  $spouseId = null;
+  while ($row = $returnSpouse->fetch(PDO::FETCH_ASSOC)) {
+    $spouseId = $row['spouseId'];
+    $sId = "i" . $startingId;
+    $spId = "i" . $spouseId;
+    $arrayIds = array("$spId" => "Spouse", "$sId" => "Self");
+
+    if ($spouseId == $endingId) {
+      return $arrayIds;
+    } else {
+      $result = array_merge($result, $arrayIds);
+      if($r = getSpouse($gedcomId, $spouseId, $endingId, $result)) {
+        return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
+      }
+    }
+  }
+  return array();
+}
+
 function findRelationship($gedcomId, $id1, $id2)
 {
   $db = $GLOBALS['db'];
   
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
-  $result = getChild($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
+  $result = getSpouse($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
   var_dump($result);
   $relationship = [];
   foreach ($result as $id => $rel) {
