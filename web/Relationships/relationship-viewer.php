@@ -53,7 +53,11 @@ function findRelationship($gedcomId, $id1, $id2)
   foreach ($result as $id => $rel) {
     $person = $db->prepare("SELECT person.name, person.id, person.birthdate, person.deathdate FROM person INNER JOIN gedcom on gedcom.id = person.gedcom_id WHERE person.id = '$id' and gedcom.id = '$gedcomId'");
     $person->execute();
-
+    $name = '';
+    $id = '';
+    $birthdate = '';
+    $deathdate = '';
+    
     # Only one row for each person.
     while ($row = $person->fetch(PDO::FETCH_ASSOC)) {
       $name = $row['name'];
