@@ -30,10 +30,11 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
       $id = "i" . $parentId;
       return array("$id" => "Parent");
     } else {
-      $id = "i" . $parentId;
+      $Sid = "i" . $startingId;
+      $Pid = "i" . $parentId;
       $result = array_merge($result, array("$id" => "Parent"));
       if($r = getParent($gedcomId, $parentId, $endingId, $result)) {
-        return array_merge(array("$id" => "Parent"), $r);
+        return array_merge(array("$Sid" => "Self", "$Pid" => "Parent"), $r);
       }
       array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
       echo "Other result:";
