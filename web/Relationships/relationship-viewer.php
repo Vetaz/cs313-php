@@ -22,6 +22,7 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
   WHERE gedcom.id = '$gedcomId' and pChild.id = '$startingId'";
   $returnParent = $db->prepare($query);
   $returnParent->execute();
+  $parentId = null;
   while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
     $parentId = $row['parentId'];
     if ($parentId != '') {
@@ -33,8 +34,11 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
     } else {
       $result = array();
     }
+    echo "startingId: $startingId <br>";
     return $result;
   }
+  
+  return array();
 }
 
 function findRelationship($gedcomId, $id1, $id2)
