@@ -24,7 +24,7 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
   $returnParent->execute();
   $parentId = null;
   while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
-    $parentId = $row['parentId'];
+    $parentId = "i" . $row['parentId'];
     echo "Parent ID: $parentId<br>";
     if ($parentId != '') {
       if ($parentId == $endingId) {
@@ -48,10 +48,11 @@ function findRelationship($gedcomId, $id1, $id2)
   
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
-  $result = getParent($gedcomId, $id1, $id2, array());
+  $result = getParent($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
   var_dump($result);
   $relationship = [];
   foreach ($result as $id => $rel) {
+    $id = substr($id, 1);
     $person = $db->prepare("SELECT person.name, person.id, person.birthdate, person.deathdate FROM person INNER JOIN gedcom on gedcom.id = person.gedcom_id WHERE person.id = '$id' and gedcom.id = '$gedcomId'");
     $person->execute();
     $name = '';
