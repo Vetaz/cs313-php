@@ -28,11 +28,14 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
 
     if ($parentId == $endingId) {
       $id = "i" . $parentId;
-      return array_merge($result, array("$id" => "Parent"));
+      return array("$id" => "Parent");
     } else {
       $id = "i" . $parentId;
       $result = array_merge($result, array("$id" => "Parent"));
-      return array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
+      if($r = getParent($gedcomId, $parentId, $endingId, $result)) {
+        return array_merge(array("$id" => "Parent"), $r);
+      }
+      array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
       echo "Other result:";
       var_dump($result);
       echo "<br>";
