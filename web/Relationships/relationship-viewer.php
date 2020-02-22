@@ -14,7 +14,7 @@ function findId($gedcomId, $startingId, $endingId, $result) {
 
 function getParent($gedcomId, $startingId, $endingId, $result) {
   $db = $GLOBALS['db'];
-  $query = "SELECT pParent.id AS 'parentId'
+  $query = "SELECT pParent.id AS \"parentId\"
   FROM person pParent
   INNER JOIN person_parent on person_parent.parent_id = pParent.id
   INNER JOIN person pChild on person_parent.person_id = pChild.id
