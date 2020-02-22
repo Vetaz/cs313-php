@@ -33,7 +33,9 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
       $id = "i" . $parentId;
       return array_merge($result, array("$id" => "Parent"));
     } else {
-      $result = array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
+      $id = "i" . $parentId;
+      $result = array_merge($result, array("$id" => "Parent"));
+      getParent($gedcomId, $parentId, $endingId, $result);
       echo "Other result:";
       var_dump($result);
       echo "<br>";
