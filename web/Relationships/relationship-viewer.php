@@ -62,7 +62,7 @@ function getChild($gedcomId, $startingId, $endingId, $result) {
       return $arrayIds;
     } else {
       $result = array_merge($result, $arrayIds);
-      if($r = getParent($gedcomId, $childId, $endingId, $result)) {
+      if($r = getChild($gedcomId, $childId, $endingId, $result)) {
         return array_merge($r, array("$cId" => "Child", "$sId" => "Self"));
       }
     }
