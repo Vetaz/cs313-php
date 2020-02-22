@@ -25,24 +25,19 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
   $parentId = null;
   while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
     $parentId = $row['parentId'];
-    echo "result:";
-    var_dump($result);
-    echo "<br>";
-    echo "Parent ID: $parentId<br><br>";
+
     if ($parentId == $endingId) {
       $id = "i" . $parentId;
       return array_merge($result, array("$id" => "Parent"));
     } else {
       $id = "i" . $parentId;
       $result = array_merge($result, array("$id" => "Parent"));
-      getParent($gedcomId, $parentId, $endingId, $result);
+      return getParent($gedcomId, $parentId, $endingId, $result);
       echo "Other result:";
       var_dump($result);
       echo "<br>";
     }
-    echo "startingId: $startingId <br>";
   }
-  echo "no parent<br>";
   return array();
 }
 
