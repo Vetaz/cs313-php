@@ -121,7 +121,7 @@ function findRelationship($gedcomId, $id1, $id2)
           echo "<p class='relationship'>$birthdate - $deathdate | $id</p>";
           echo "<p class='relationship'>$rel</p>";
           echo "</div>";
-          if ($id2 != $id) {
+          if ($id1 != $id) {
             echo "<div class='line'></div>";
           }
         }
