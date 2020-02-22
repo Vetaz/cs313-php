@@ -14,22 +14,22 @@ function findId($gedcomId, $startingId, $endingId, $result) {
 
 function getParent($gedcomId, $startingId, $endingId, $result) {
   $db = $GLOBALS['db'];
-  $id = substr($startingId, 1);
   $query = "SELECT pParent.id AS \"parentId\"
   FROM person pParent
   INNER JOIN person_parent on person_parent.parent_id = pParent.id
   INNER JOIN person pChild on person_parent.person_id = pChild.id
   INNER JOIN gedcom ON gedcom.id = person_parent.gedcom_id and gedcom.id = pChild.gedcom_id and gedcom.id = pParent.gedcom_id
-  WHERE gedcom.id = '$gedcomId' and pChild.id = '$id'";
+  WHERE gedcom.id = '$gedcomId' and pChild.id = '$startingId'";
   $returnParent = $db->prepare($query);
   $returnParent->execute();
   $parentId = null;
   while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
-    $parentId = "i" . $row['parentId'];
+    $parentId = $row['parentId'];
     echo "Parent ID: $parentId<br>";
     if ($parentId != '') {
       if ($parentId == $endingId) {
-        return array_merge($result, array($parentId => 'Parent'));
+        $id = "i" . $parentId;
+        return array_merge($result, array("$id" => "Parent"));
       } else {
         $result = array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
       }
