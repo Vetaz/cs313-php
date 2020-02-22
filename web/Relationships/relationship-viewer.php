@@ -39,6 +39,9 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
       if($r = getChild($gedcomId, $parentId, $endingId, $result)) {
         return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
       }
+      if($r = getSpouse($gedcomId, $parentId, $endingId, $result)) {
+        return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
+      }
     }
   }
   return array();
@@ -72,6 +75,12 @@ function getChild($gedcomId, $startingId, $endingId, $result) {
       if($r = getChild($gedcomId, $childId, $endingId, $result)) {
         return array_merge($r, array("$cId" => "Child", "$sId" => "Self"));
       }
+      if($r = getParent($gedcomId, $childId, $endingId, $result)) {
+        return array_merge($r, array("$cId" => "Child", "$sId" => "Self"));
+      }
+      if($r = getSpouse($gedcomId, $childId, $endingId, $result)) {
+        return array_merge($r, array("$cId" => "Child", "$sId" => "Self"));
+      }
     }
   }
   return array();
@@ -103,6 +112,12 @@ function getSpouse($gedcomId, $startingId, $endingId, $result) {
     } else {
       $result = array_merge($result, $arrayIds);
       if($r = getSpouse($gedcomId, $spouseId, $endingId, $result)) {
+        return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
+      }
+      if($r = getParent($gedcomId, $spouseId, $endingId, $result)) {
+        return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
+      }
+      if($r = getchild($gedcomId, $spouseId, $endingId, $result)) {
         return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
       }
     }
