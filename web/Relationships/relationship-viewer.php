@@ -25,9 +25,10 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
     $pId = "i" . $parentId;
     $arrayIds = array("$pId" => "Parent", "$sId" => "Self");
 
-    if (array_key_exists($parentId, $result)) {
+    if (array_key_exists($pId, $result)) {
       continue;
     }
+
     if ($parentId == $endingId) {
       return $arrayIds;
     } else {
@@ -35,34 +36,7 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
       if($r = getParent($gedcomId, $parentId, $endingId, $result)) {
         return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
       }
-    }
-  }
-  return array();
-}
-
-
-function WORKSgetParent($gedcomId, $startingId, $endingId, $result) {
-  $db = $GLOBALS['db'];
-  $query = "SELECT pParent.id AS \"parentId\"
-  FROM person pParent
-  INNER JOIN person_parent on person_parent.parent_id = pParent.id
-  INNER JOIN person pChild on person_parent.person_id = pChild.id
-  INNER JOIN gedcom ON gedcom.id = person_parent.gedcom_id and gedcom.id = pChild.gedcom_id and gedcom.id = pParent.gedcom_id
-  WHERE gedcom.id = '$gedcomId' and pChild.id = '$startingId'";
-  $returnParent = $db->prepare($query);
-  $returnParent->execute();
-  $parentId = null;
-  while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
-    $parentId = $row['parentId'];
-    $sId = "i" . $startingId;
-    $pId = "i" . $parentId;
-    $arrayIds = array("$pId" => "Parent", "$sId" => "Self");
-
-    if ($parentId == $endingId) {
-      return $arrayIds;
-    } else {
-      $result = array_merge($result, $arrayIds);
-      if($r = getParent($gedcomId, $parentId, $endingId, $result)) {
+      if($r = getChild($gedcomId, $parentId, $endingId, $result)) {
         return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
       }
     }
@@ -86,6 +60,10 @@ function getChild($gedcomId, $startingId, $endingId, $result) {
     $sId = "i" . $startingId;
     $cId = "i" . $childId;
     $arrayIds = array("$cId" => "Child", "$sId" => "Self");
+
+    if (array_key_exists($cId, $result)) {
+      continue;
+    }
 
     if ($childId == $endingId) {
       return $arrayIds;
@@ -115,6 +93,10 @@ function getSpouse($gedcomId, $startingId, $endingId, $result) {
     $sId = "i" . $startingId;
     $spId = "i" . $spouseId;
     $arrayIds = array("$spId" => "Spouse", "$sId" => "Self");
+
+    if (array_key_exists($spId, $result)) {
+      continue;
+    }
 
     if ($spouseId == $endingId) {
       return $arrayIds;
