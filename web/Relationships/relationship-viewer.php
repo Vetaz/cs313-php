@@ -25,7 +25,9 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
   $parentId = null;
   while ($row = $returnParent->fetch(PDO::FETCH_ASSOC)) {
     $parentId = $row['parentId'];
-    echo "result: $result<br>";
+    echo "result:";
+    var_dump($result);
+    echo "<br>";
     echo "Parent ID: $parentId<br><br>";
     if ($parentId == $endingId) {
       $id = "i" . $parentId;
