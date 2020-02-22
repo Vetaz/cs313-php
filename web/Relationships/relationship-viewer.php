@@ -28,7 +28,7 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
     echo "Parent ID: $parentId<br>";
     if ($parentId != '') {
       if ($parentId == $endingId) {
-        $result = array($parentId => 'Parent');
+        return array_merge($result, array($parentId => 'Parent'));
       } else {
         $result = array_merge($result, getParent($gedcomId, $parentId, $endingId, $result));
       }
@@ -37,7 +37,6 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
       $result = array();
     }
     echo "startingId: $startingId <br>";
-    return $result;
   }
   echo "no parent<br>";
   return array();
@@ -49,7 +48,7 @@ function findRelationship($gedcomId, $id1, $id2)
   
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
-  $result = getParent($gedcomId, $id1, $id2, array($id1 => 'Self'));
+  $result = getParent($gedcomId, $id1, $id2, array());
   var_dump($result);
   $relationship = [];
   foreach ($result as $id => $rel) {
