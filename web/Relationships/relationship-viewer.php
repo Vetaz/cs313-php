@@ -27,14 +27,14 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
     $parentId = $row['parentId'];
     $sId = "i" . $startingId;
     $pId = "i" . $parentId;
-    $arrayIds = array("$sId" => "Self", "$pId" => "Parent");
+    $arrayIds = array("$pId" => "Parent", "$sId" => "Self");
 
     if ($parentId == $endingId) {
       return $arrayIds;
     } else {
       $result = array_merge($result, $arrayIds);
       if($r = getParent($gedcomId, $parentId, $endingId, $result)) {
-        return array_merge(array("$sId" => "Self", "$pId" => "Parent"), $r);
+        return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
       }
     }
   }
