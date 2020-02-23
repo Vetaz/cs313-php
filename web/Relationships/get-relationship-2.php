@@ -39,6 +39,7 @@ function personSelector()
     <?php require 'nav.php'; ?>
   </header>
   <main>
+    <p>Note: It may take a few minutes to find the realtionship</p>
     <div>
       <form method="get" action="relationship-viewer.php">
         <p>Select ID of person 1:</p>

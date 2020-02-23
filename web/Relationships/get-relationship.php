@@ -21,7 +21,7 @@ $db = get_db();
   <main>
     <div>
       <form method="get" action="get-relationship-2.php">
-        <p>Select the gedcom</p>
+        <h2>Select the gedcom to find relationships between people</h2>
         <select name="gedcom_id">
           <?php
           $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username' ORDER BY id");

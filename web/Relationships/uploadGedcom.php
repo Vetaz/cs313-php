@@ -16,8 +16,8 @@ require "userRequired.php";
     <h1>Upload Your Gedcom</h1>
     <?php require 'nav.php'; ?>
   </header>
-  <p>Click on the "Choose File" button to upload a file:</p>
-
+  <h2>Find the gedcom to upload</h2>
+  <p>Note: It may take a few minutes to upload your gedcom.</p>
   <form action="upload.php" method="POST" enctype="multipart/form-data">
     <div class="space-after">
       <input type="file" name="filename" />

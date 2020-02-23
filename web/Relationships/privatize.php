@@ -21,8 +21,8 @@ $db = get_db();
   <main>
     <div>
       <form method="POST" action="privatizing.php">
-        <p>Select the gedcom</p>
-        <p>All people withing the gedcom who have no death date and death place will have their data privatized. This means that their names will change to 'Living' and their birth info will be deleted.</p>
+        <h2>Select the gedcom to privatize</h2>
+        <p>Note: All people withing the gedcom who have no death date and death place will have their data privatized. This means that their names will change to 'Living' and their birth info will be deleted.</p>
         <select name="gedcom_id">
           <?php
           $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username' ORDER BY id");

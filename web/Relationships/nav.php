@@ -7,6 +7,6 @@
 
   </nav>
   <?php if (isset($username)) {
-    echo "<div class='signedInAs'><p>Signed in as $username </p></div>";
+    echo "<div class='signedInAs'><p>Signed in as $username. <a href='signOut.php'>Sign out?<a/> </p> </div>";
   } ?>
 </div>
