@@ -70,10 +70,9 @@ function getChild($gedcomId, $startingId, $endingId, $result) {
       if($r = getChild($gedcomId, $childId, $endingId, $result)) {
         return array_merge($r, array("$cId" => "Child", "$sId" => "Self"));
       }
-      /*
       if($r = getParent($gedcomId, $childId, $endingId, $result)) {
         return array_merge($r, array("$cId" => "Child", "$sId" => "Self"));
-      } takes too long
+      }/*
       if($r = getSpouse($gedcomId, $childId, $endingId, $result)) {
         return array_merge($r, array("$cId" => "Child", "$sId" => "Self"));
       }*/
