@@ -12,6 +12,16 @@ p.relationship {
   margin: 5px;
 }
 
+div.navGrid {
+  display: grid;
+  grid-template-columns: 11fr 1fr;
+}
+
+div.signedInAs {
+  display: flex;
+  align-items: center;
+}
+
 div.relationshipCC {
   display: flex;
   flex-direction: column;

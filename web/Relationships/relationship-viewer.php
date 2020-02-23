@@ -2,11 +2,6 @@
 require 'userRequired.php';
 require "dbConnect.php";
 $db = get_db();
-function findId($gedcomId, $startingId, $endingId, $result) {
-  $db = $GLOBALS['db'];
-  if (array_key_exists($startingId, $result))
-  return $result;
-}
 
 function getParent($gedcomId, $startingId, $endingId, $result) {
   $db = $GLOBALS['db'];
@@ -134,7 +129,6 @@ function findRelationship($gedcomId, $id1, $id2)
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
   $result = getParent($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
-  var_dump($result);
   $relationship = [];
   foreach ($result as $id => $rel) {
     $id = substr($id, 1);
@@ -180,8 +174,6 @@ function findRelationship($gedcomId, $id1, $id2)
     <?php require 'nav.php'; ?>
   </header>
   <main>
-    <p> Currently only shows the two people selected. I am working on an algorithm
-      that will be working by the end of this week</p>
     <?php
 
     $id1 = null;

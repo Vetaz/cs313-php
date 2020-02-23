@@ -53,6 +53,7 @@ function personSelector()
           personSelector();
           ?>
         </select>
+        <br>
         <input class="button" type="submit">
       </form>
     </div>
