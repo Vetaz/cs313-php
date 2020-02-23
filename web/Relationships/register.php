@@ -27,6 +27,7 @@
       # the account can be created and turned to sign in page.
       echo "That username is not in the system :)";
       $password = htmlspecialchars($_POST['password']);
+      $password = password_hash($password, PASSWORD_DEFAULT);
       $firstName = htmlspecialchars($_POST['firstName']);
       $lastName = htmlspecialchars($_POST['lastName']);
 
