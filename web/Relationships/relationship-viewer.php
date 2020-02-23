@@ -187,7 +187,9 @@ function findRelationship($gedcomId, $id1, $id2)
 
       $id1 = $_GET['id1'];
       $id2 = $_GET['id2'];
-      $relationship = findRelationship($gedcomId, $id1, $id2);
+      if ($id1 != $id2) {
+        $relationship = findRelationship($gedcomId, $id1, $id2);
+      }
 
       if (sizeof($relationship) > 1) {
         echo "<div class='relationshipCC'>";
@@ -208,7 +210,11 @@ function findRelationship($gedcomId, $id1, $id2)
         }
         echo "</div>";
       } else {
-        echo "You are not related";
+        if ($id1 != $id2) {
+          echo "You are not related";
+        } else {
+          echo "Yes, the same person is related to themselves. Go back and choose different people.";
+        }
       }
     } else {
       echo "IDs are not setup correctly. Go back and check them!";
