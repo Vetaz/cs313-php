@@ -88,7 +88,7 @@ function getSpouse($gedcomId, $startingId, $endingId, $result) {
   INNER JOIN person_spouse on person_spouse.person_id = p.id
   INNER JOIN person s on person_spouse.spouse_id = s.id
   INNER JOIN gedcom ON gedcom.id = person_spouse.gedcom_id and gedcom.id = p.gedcom_id and gedcom.id = s.gedcom_id
-  WHERE gedcom.id = '$gedcomId' and p.id = '$startingId';";
+  WHERE gedcom.id = '$gedcomId' and p.id = '$startingId'";
   $returnSpouse = $db->prepare($query);
   $returnSpouse->execute();
   $spouseId = null;
