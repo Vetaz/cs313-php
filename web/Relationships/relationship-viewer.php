@@ -108,10 +108,10 @@ function getSpouse($gedcomId, $startingId, $endingId, $result) {
       $result = array_merge($result, $arrayIds);
       if($r = getSpouse($gedcomId, $spouseId, $endingId, $result)) {
         return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
-      }
+      }/*
       if($r = getParent($gedcomId, $spouseId, $endingId, $result)) {
         return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
-      }/*
+      }
       if($r = getchild($gedcomId, $spouseId, $endingId, $result)) {
         return array_merge($r, array("$spId" => "Spouse", "$sId" => "Self"));
       } Takes too long*/
@@ -126,7 +126,11 @@ function findRelationship($gedcomId, $id1, $id2)
   
   # Results is the result of the path to get from one id to another.
   # the value is the relationship from the previous id.
-  $result = getParent($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
+  # check descendants first.
+  $result = getChild($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
+  if (empty($result)) {
+    $result = getParent($gedcomId, $id1, $id2, array("i" . $id1 => "self"));
+  }
   $relationship = [];
   foreach ($result as $id => $rel) {
     $id = substr($id, 1);
