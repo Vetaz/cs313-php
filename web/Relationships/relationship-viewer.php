@@ -181,7 +181,7 @@ function findRelationship($gedcomId, $id1, $id2)
 
     $id1 = null;
     $id2 = null;
-    $relationship = null;
+    $relationship = array();
     if (isset($_GET['id1']) && isset($_GET['id2'])) {
       $gedcomId = $_SESSION['gedcom_id'];
 
