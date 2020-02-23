@@ -12,7 +12,6 @@
   if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
-    $password = password_hash($password, PASSWORD_DEFAULT);
 
     require "dbConnect.php";
     $db = get_db();
@@ -26,7 +25,7 @@
       $passwordInSystem = $row['pass'];
     }
    
-    if (($usernameInSystem == $username) && ($passwordInSystem == $password)) { 
+    if (($usernameInSystem == $username) && (password_verify($password, $passwordInSystem))) { 
       echo "Sign in verified";
       $_SESSION['username'] = $username;
       header("Location: get-relationship.php");
