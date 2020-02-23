@@ -3,6 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <title>Relationship Viewer</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+    ></script>
+
     <link rel="stylesheet" href="relationship.css" />
   </head>
 
@@ -25,19 +43,22 @@
           </div>
           <label for="lastName">Last Name</label>
           <div>
-            <input type="text" id="lastName" name="lastName" maxlength="64" required/>
+            <input type="text" id="lastName" name="lastName" maxlength="64" required />
           </div>
           <label for="username">Username</label>
           <div>
-            <input type="text" id="username" name="username" maxlength="64" required/>
+            <input type="text" id="username" name="username" maxlength="64" required />
           </div>
           <label for="password">Password</label>
           <div>
-            <input type="text" id="password" name="password" maxlength="64" required/>
-          </div>
-          <label for="repeatPassword">Repeat Password</label>
-          <div>
-            <input type="text" id="repeatPassword" name="repeatPassword" maxlength="64" required/>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              data-toggle="password"
+              maxlength="64"
+              required
+            />
           </div>
         </div>
         <input type="submit" value="Register" />

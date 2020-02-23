@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+    ></script>
+
     <link rel="stylesheet" href="relationship.css" />
   </head>
 
@@ -25,7 +43,7 @@
         </div>
         <label for="password">Password</label>
         <div>
-          <input type="password" id="password" name="password" maxlength="64" required/>
+          <input type="password" id="password" name="password" maxlength="64" data-toggle="password" required/>
         </div>
       </div>
       <input class="button" type="submit" value="Sign In" />

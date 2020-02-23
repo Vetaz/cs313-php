@@ -163,6 +163,7 @@ function findRelationship($gedcomId, $id1, $id2)
 <head>
   <meta charset="UTF-8">
   <title>Relationship Viewer</title>
+  <?php require 'bootstrap.php'; ?>
   <link rel="stylesheet" href="relationship.css">
 </head>
 

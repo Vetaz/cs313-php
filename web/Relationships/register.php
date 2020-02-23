@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <?php require 'bootstrap.php'; ?>
   <title>Registering</title>
 </head>
 

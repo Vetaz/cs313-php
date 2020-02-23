@@ -21,7 +21,7 @@ $db = get_db();
   </header>
   <main>
     <form method="POST" action="deletingGedcom.php">
-      <p>Select the gedcom to delete</p>
+      <h2>Select the gedcom to delete</h2>
       <select name="gedcom_id">
         <?php
         $gedcomSelect = $db->prepare("SELECT id FROM gedcom WHERE username = '$username' ORDER BY id");
