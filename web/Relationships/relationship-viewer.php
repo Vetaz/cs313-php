@@ -33,10 +33,10 @@ function getParent($gedcomId, $startingId, $endingId, $result) {
       }
       if($r = getChild($gedcomId, $parentId, $endingId, $result)) {
         return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
-      }
+      }/*
       if($r = getSpouse($gedcomId, $parentId, $endingId, $result)) {
         return array_merge($r, array("$pId" => "Parent", "$sId" => "Self"));
-      }
+      } not doing spouses yet*/
     }
   }
   return array();
